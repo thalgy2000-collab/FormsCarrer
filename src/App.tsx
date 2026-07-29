@@ -8,6 +8,8 @@ import { supabase } from './lib/supabaseClient';
 import type { UserScores, QuestionOption, Category } from './types';
 import './index.css';
 
+const DISCLAIMER_TEXT = "Não há resposta certa ou errada. Todas as respostas apenas demonstram seu viés no momento de tomar uma decisão.";
+
 function App() {
   const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result-category' | 'result-roles'>('intro');
   const [qIndex, setQIndex] = useState(0);
@@ -124,7 +126,7 @@ function App() {
             
             <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '1.2rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem' }}>
               <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.5' }}>
-                Não há resposta certa ou errada. Todas as respostas apenas demonstram seu viés no momento de tomar uma decisão.
+                {DISCLAIMER_TEXT}
               </p>
             </div>
 
@@ -140,7 +142,7 @@ function App() {
         )}
 
         {screen === 'questions' && (
-          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: '2.5rem' }}>
+          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: '2.5rem 2.5rem 5.5rem 2.5rem', position: 'relative' }}>
             <div className="progress-container">
               <div className="progress-bar" style={{ width: `${progress}%` }}></div>
             </div>
@@ -160,6 +162,12 @@ function App() {
                   {opt.text}
                 </button>
               ))}
+            </div>
+            
+            <div style={{ position: 'absolute', bottom: '1.5rem', left: '0', width: '100%', padding: '0 2.5rem', textAlign: 'center' }}>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.35)', margin: 0, fontStyle: 'italic', lineHeight: '1.4' }}>
+                {DISCLAIMER_TEXT}
+              </p>
             </div>
           </motion.div>
         )}
