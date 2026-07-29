@@ -1,14 +1,16 @@
 export type Category = 
-  | 'Product'
-  | 'Data'
+  | 'Produto'
+  | 'Dados'
   | 'Design'
-  | 'Research'
-  | 'Engineering'
-  | 'Program/Ops'
+  | 'Pesquisa'
+  | 'Engenharia'
+  | 'Programa'
+  | 'Operações'
   | 'Growth'
   | 'Insights'
   | 'IA'
-  | 'Strategy';
+  | 'Estratégia'
+  | 'Liderança';
 
 export interface Role {
   id: string;
