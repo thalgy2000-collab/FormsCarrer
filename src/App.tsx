@@ -54,7 +54,7 @@ function App() {
 
   const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (lead.name.trim()) {
+    if (lead.name.trim() && lead.email.trim()) {
       const result = analyzeUser(scores, mockRoles);
       setAnalysis(result);
       
@@ -63,7 +63,7 @@ function App() {
         try {
           const payload = {
             name: lead.name,
-            email: lead.email || null,
+            email: lead.email,
             answers: answers,
             score_x: scores.axis.x,
             score_y: scores.axis.y,
@@ -190,8 +190,9 @@ function App() {
               />
               <input
                 type="email"
-                placeholder="Seu e-mail (opcional)"
+                placeholder="Seu e-mail (obrigatório)"
                 className="form-input"
+                required
                 value={lead.email}
                 onChange={e => setLead({ ...lead, email: e.target.value })}
               />
