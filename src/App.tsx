@@ -111,46 +111,46 @@ function App() {
             key="intro"
             {...fadeVariants}
             className="glass-panel"
-            style={{ padding: '3rem', textAlign: 'center' }}
+            style={{ padding: 'clamp(1.5rem, 5vw, 3rem)', textAlign: 'center' }}
           >
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <div style={{ background: 'var(--brand-gradient)', padding: '16px', borderRadius: '50%' }}>
                 <Target size={40} color="white" />
               </div>
             </div>
-            <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>
+            <h1 style={{ fontSize: 'clamp(1.8rem, 8vw, 2.5rem)', marginBottom: '1rem', wordBreak: 'break-word' }}>
               Descubra seu <span className="text-gradient">Caminho Ideal</span> em Tech
             </h1>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: 'clamp(0.95rem, 4vw, 1.1rem)', lineHeight: '1.6' }}>
               Com base na Matriz de Carreira PM3, identifique os papéis em Produto e Tecnologia que mais combinam com o seu perfil, seja você especialista ou generalista, executor ou líder.
             </p>
             
             <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '1.2rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem' }}>
-              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.5' }}>
+              <p style={{ fontSize: 'clamp(0.85rem, 3.5vw, 0.95rem)', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.5' }}>
                 {DISCLAIMER_TEXT}
               </p>
             </div>
 
             <div>
-              <button className="btn-primary" onClick={handleStart} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <button className="btn-primary" onClick={handleStart} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: 'clamp(1rem, 4vw, 1.1rem)' }}>
                 Iniciar Avaliação <ChevronRight size={20} />
               </button>
             </div>
-            <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+            <p style={{ marginTop: '1.5rem', fontSize: 'clamp(0.8rem, 3vw, 0.9rem)', color: 'var(--text-secondary)' }}>
               Leva menos de 3 minutos.
             </p>
           </motion.div>
         )}
 
         {screen === 'questions' && (
-          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: '2.5rem 2.5rem 5.5rem 2.5rem', position: 'relative' }}>
+          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 2.5rem) clamp(4.5rem, 15vw, 5.5rem) clamp(1.5rem, 5vw, 2.5rem)', position: 'relative' }}>
             <div className="progress-container">
               <div className="progress-bar" style={{ width: `${progress}%` }}></div>
             </div>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontWeight: 600 }}>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontWeight: 600, fontSize: 'clamp(0.9rem, 3.5vw, 1rem)' }}>
               Pergunta {qIndex + 1} de {mockQuestions.length}
             </p>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '2rem', lineHeight: '1.4' }}>
+            <h2 style={{ fontSize: 'clamp(1.2rem, 5vw, 1.5rem)', marginBottom: '2rem', lineHeight: '1.4', wordBreak: 'break-word' }}>
               {currentQuestion.text}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -165,8 +165,8 @@ function App() {
               ))}
             </div>
             
-            <div style={{ position: 'absolute', bottom: '1.5rem', left: '0', width: '100%', padding: '0 2.5rem', textAlign: 'center' }}>
-              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.35)', margin: 0, fontStyle: 'italic', lineHeight: '1.4' }}>
+            <div style={{ position: 'absolute', bottom: 'clamp(1rem, 4vw, 1.5rem)', left: '0', width: '100%', padding: '0 clamp(1rem, 5vw, 2.5rem)', textAlign: 'center' }}>
+              <p style={{ fontSize: 'clamp(0.75rem, 3vw, 0.85rem)', color: 'rgba(255,255,255,0.35)', margin: 0, fontStyle: 'italic', lineHeight: '1.4' }}>
                 {DISCLAIMER_TEXT}
               </p>
             </div>
@@ -174,10 +174,10 @@ function App() {
         )}
 
         {screen === 'lead' && (
-          <motion.div key="lead" {...fadeVariants} className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
+          <motion.div key="lead" {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 3rem)', textAlign: 'center' }}>
             <Sparkles size={40} color="#a855f7" style={{ margin: '0 auto 1.5rem' }} />
-            <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Quase lá!</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: 'clamp(1.5rem, 6vw, 2rem)', marginBottom: '1rem' }}>Quase lá!</h2>
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem', fontSize: 'clamp(0.95rem, 4vw, 1rem)' }}>
               Para onde devemos enviar os detalhes completos do seu resultado?
             </p>
             <form onSubmit={handleLeadSubmit} style={{ maxWidth: '400px', margin: '0 auto' }}>
@@ -197,7 +197,7 @@ function App() {
                 value={lead.email}
                 onChange={e => setLead({ ...lead, email: e.target.value })}
               />
-              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
+              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '1rem', fontSize: 'clamp(1rem, 4vw, 1.1rem)' }}>
                 Ver Meus Resultados
               </button>
             </form>
@@ -205,32 +205,32 @@ function App() {
         )}
 
         {screen === 'result-category' && analysis && (
-          <motion.div key="result-category" {...fadeVariants} className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
+          <motion.div key="result-category" {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 3rem)', textAlign: 'center' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
               <div style={{ background: 'var(--brand-gradient)', padding: '16px', borderRadius: '50%' }}>
                 <Target size={40} color="white" />
               </div>
             </div>
             
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(1rem, 4vw, 1.1rem)', marginBottom: '0.5rem' }}>
               Seu perfil dominante é:
             </p>
-            <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem', textTransform: 'uppercase' }} className="text-gradient">
+            <h2 style={{ fontSize: 'clamp(2rem, 8vw, 3rem)', marginBottom: '1.5rem', textTransform: 'uppercase', wordBreak: 'break-word' }} className="text-gradient">
               {analysis.dominantCategory}
             </h2>
             
-            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '1.5rem', color: 'white' }}>
+            <p style={{ fontSize: 'clamp(1rem, 4.5vw, 1.2rem)', lineHeight: '1.6', marginBottom: '1.5rem', color: 'white' }}>
               Sua forma de resolver problemas mostrou um viés forte por <strong>{analysis.dominantCategory.toUpperCase()}</strong> — {analysis.dominantPattern}.
             </p>
 
             {analysis.secondaryCategory && (
-              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2.5rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', display: 'inline-block' }}>
-                <span style={{ opacity: 0.7 }}>Influência secundária:</span> <strong style={{ color: '#d8b4fe', opacity: 1 }}>{analysis.secondaryCategory}</strong>
+              <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.9rem, 3.5vw, 1rem)', marginBottom: '2.5rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', display: 'inline-block' }}>
+                <span style={{ opacity: 0.7 }}>Influência secundária:</span> <strong style={{ color: '#d8b4fe', opacity: 1, wordBreak: 'break-word' }}>{analysis.secondaryCategory}</strong>
               </p>
             )}
             
             <div style={{ display: 'block' }}>
-              <button className="btn-primary" onClick={() => setScreen('result-roles')} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <button className="btn-primary" onClick={() => setScreen('result-roles')} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: 'clamp(0.95rem, 4vw, 1.1rem)' }}>
                 Ver meus cargos ideais <ArrowRight size={20} />
               </button>
             </div>
@@ -238,12 +238,12 @@ function App() {
         )}
 
         {screen === 'result-roles' && analysis && (
-          <motion.div key="result-roles" {...fadeVariants} className="glass-panel" style={{ padding: '3rem' }}>
+          <motion.div key="result-roles" {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 3rem)' }}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 7vw, 2.5rem)', marginBottom: '0.5rem', wordBreak: 'break-word' }}>
                 Seu Match de <span className="text-gradient">Carreira</span>
               </h2>
-              <p style={{ color: 'var(--text-secondary)' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.9rem, 4vw, 1rem)' }}>
                 Baseado no seu perfil dominante ({analysis.dominantCategory}), aqui estão os 3 papéis mais compatíveis na matriz.
               </p>
             </div>
@@ -265,13 +265,13 @@ function App() {
                       background: 'var(--brand-gradient)'
                     }}></div>
                   )}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                    <h3 style={{ fontSize: '1.3rem', color: idx === 0 ? '#d8b4fe' : 'white' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                    <h3 style={{ fontSize: 'clamp(1.1rem, 4.5vw, 1.3rem)', color: idx === 0 ? '#d8b4fe' : 'white', wordBreak: 'break-word', flex: '1 1 auto', minWidth: '0' }}>
                       {idx + 1}. {match.role.name}
                     </h3>
-                    <span className="badge">{match.role.category}</span>
+                    <span className="badge" style={{ flexShrink: 0 }}>{match.role.category}</span>
                   </div>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.5' }}>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: 'clamp(0.9rem, 3.5vw, 0.95rem)', lineHeight: '1.6', wordBreak: 'break-word' }}>
                     {match.explanation}
                   </p>
                 </div>
