@@ -60,6 +60,7 @@ function App() {
       
       // Fire and forget Supabase insert
       const saveToSupabase = async () => {
+        if (!supabase) return;
         try {
           const payload = {
             name: lead.name,
