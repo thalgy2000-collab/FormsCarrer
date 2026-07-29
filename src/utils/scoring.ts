@@ -2,38 +2,19 @@ import type { MatchResult, Role, UserScores } from '../types';
 
 const MAX_DISTANCE = Math.sqrt(100 + 100); // 14.14, assuming 10x10 grid
 
-export function calculateTopRoles(
+export interface AnalysisResult {
+  topRoles: MatchResult[];
+  dominantCategory: string;
+  secondaryCategory: string;
+  dominantPattern: string;
+}
+
+export function analyzeUser(
   userScores: UserScores,
   roles: Role[]
-): MatchResult[] {
+): AnalysisResult {
   // Find the maximum category score the user achieved to normalize affinities (scale 0 a 1)
   const maxUserCategoryScore = Math.max(1, ...Object.values(userScores.categories));
-  
-  // Discover user's top category for the action pattern explanation
-  let topCategory = 'Produto';
-  let topScore = -1;
-  Object.entries(userScores.categories).forEach(([cat, score]) => {
-    if (score > topScore) {
-      topScore = score as number;
-      topCategory = cat;
-    }
-  });
-
-  const patterns: Record<string, string> = {
-    Dados: 'você tendeu a resolver os problemas puxando dados antes de agir',
-    Pesquisa: 'você teve forte inclinação para investigar a fundo e ouvir os usuários',
-    Engenharia: 'suas decisões mostraram foco em resolver problemas técnicos complexos',
-    Operações: 'você priorizou estruturar processos e destravar obstáculos entre áreas',
-    Estratégia: 'você tendeu a tomar decisões baseadas na visão de negócio de longo prazo',
-    Design: 'você focou intensamente em simplificar a experiência do usuário',
-    Growth: 'suas respostas apontaram para rápida experimentação e validação',
-    Insights: 'você buscou cruzar informações para descobrir padrões invisíveis',
-    IA: 'você buscou aplicar inovação e IA para alavancar soluções',
-    Produto: 'você tendeu a orquestrar times e equilibrar necessidades diversas',
-    Programa: 'você priorizou estruturar processos e destravar obstáculos entre áreas',
-    Liderança: 'você preferiu direcionar pessoas e empoderar o time em vez de executar',
-  };
-  const actionPattern = patterns[topCategory] || patterns['Produto'];
   
   // Clamp user coordinates to the 0-10 scale defined by the matrix
   const userX = Math.max(0, Math.min(10, userScores.axis.x));
@@ -54,16 +35,15 @@ export function calculateTopRoles(
     const finalScore = (0.6 * normalizedAffinity) - (0.4 * normalizedDistance);
 
     // 4. Generate explanation
-    let explanation = `Top match! Você demonstrou forte alinhamento com a área de ${role.category} (afinidade de ${Math.round(normalizedAffinity * 100)}%). `;
-    explanation += `Notamos que ${actionPattern}, o que reforça esse destaque. `;
-    explanation += `Além disso, sua posição na matriz de liderança x especialização (X:${userX.toFixed(1)}, Y:${userY.toFixed(1)}) `;
+    let explanation = `Alinhamento de ${Math.round(normalizedAffinity * 100)}% com a área de ${role.category}. `;
+    explanation += `Sua posição nos eixos Especialista↔Generalista e Execução↔Liderança (X:${userX.toFixed(1)}, Y:${userY.toFixed(1)}) `;
     
     if (normalizedDistance < 0.2) {
-      explanation += `é extremamente próxima ao esperado para ${role.name}.`;
+      explanation += `é extremamente próxima ao exigido pelo cargo.`;
     } else if (normalizedDistance < 0.4) {
-      explanation += `é bem alinhada ao perfil de ${role.name}.`;
+      explanation += `é bem alinhada ao perfil da vaga.`;
     } else {
-      explanation += `indica um bom desafio em relação ao seu momento atual de atuação.`;
+      explanation += `indica um bom desafio de adaptação para o seu momento atual.`;
     }
 
     return {
@@ -75,8 +55,65 @@ export function calculateTopRoles(
 
   // Sort by highest score descending
   results.sort((a, b) => b.score - a.score);
+  const topRoles = results.slice(0, 3);
 
-  return results.slice(0, 3);
+  // Determine Dominant and Secondary categories from Top 3 roles to guarantee consistency
+  const catCounts: Record<string, number> = {};
+  topRoles.forEach(r => {
+    catCounts[r.role.category] = (catCounts[r.role.category] || 0) + 1;
+  });
+  
+  const sortedCats = Object.entries(catCounts).sort((a, b) => {
+    if (b[1] !== a[1]) return b[1] - a[1];
+    // Tie breaker: the one that appears first in topRoles
+    const indexA = topRoles.findIndex(r => r.role.category === a[0]);
+    const indexB = topRoles.findIndex(r => r.role.category === b[0]);
+    return indexA - indexB;
+  });
+
+  const dominantCategory = sortedCats[0][0];
+  let secondaryCategory = sortedCats.length > 1 ? sortedCats[1][0] : '';
+
+  // If top 3 roles are all the exact same category, fallback to user's raw scores for secondary
+  if (!secondaryCategory) {
+    const rawSorted = Object.entries(userScores.categories)
+      .sort((a, b) => (b[1] as number) - (a[1] as number));
+    const nextBest = rawSorted.find(c => c[0] !== dominantCategory);
+    if (nextBest) secondaryCategory = nextBest[0];
+  }
+
+  const patterns: Record<string, string> = {
+    Dados: 'você tende a resolver os problemas buscando evidências e métricas antes de agir',
+    Pesquisa: 'você tem forte inclinação para investigar a fundo e ouvir os usuários',
+    Engenharia: 'suas decisões mostram um foco em resolver problemas técnicos complexos',
+    Operações: 'você prioriza estruturar processos e destravar obstáculos entre áreas',
+    Estratégia: 'você toma decisões pensando na visão de negócio de longo prazo',
+    Design: 'você foca intensamente em simplificar a experiência do usuário',
+    Growth: 'suas respostas apontam para rápida experimentação e foco em conversão',
+    Insights: 'você busca cruzar informações qualitativas para descobrir padrões invisíveis',
+    IA: 'você busca aplicar inovações tecnológicas para escalar soluções',
+    Produto: 'você tende a orquestrar times e equilibrar necessidades diversas',
+    Programa: 'você prioriza estruturar processos e destravar obstáculos entre áreas',
+    Liderança: 'você prefere direcionar pessoas e empoderar o time em vez de executar',
+  };
+
+  const dominantPattern = patterns[dominantCategory] || patterns['Produto'];
+
+  // Add contextual hint about dominant/secondary to the role explanations
+  topRoles.forEach(r => {
+    if (r.role.category === dominantCategory) {
+      r.explanation = `Destaque na sua área dominante (${dominantCategory}). ` + r.explanation;
+    } else if (r.role.category === secondaryCategory) {
+      r.explanation = `Combina com sua área secundária (${secondaryCategory}). ` + r.explanation;
+    }
+  });
+
+  return {
+    topRoles,
+    dominantCategory,
+    secondaryCategory,
+    dominantPattern
+  };
 }
 
 export function getInitialScores(): UserScores {

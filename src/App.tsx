@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Target, Sparkles, RefreshCcw } from 'lucide-react';
+import { ChevronRight, Target, Sparkles, RefreshCcw, ArrowRight } from 'lucide-react';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
-import { getInitialScores, calculateTopRoles } from './utils/scoring';
+import { getInitialScores, analyzeUser, type AnalysisResult } from './utils/scoring';
 import type { UserScores, QuestionOption, Category } from './types';
 import './index.css';
 
 function App() {
-  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result'>('intro');
+  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result-category' | 'result-roles'>('intro');
   const [qIndex, setQIndex] = useState(0);
   const [scores, setScores] = useState<UserScores>(getInitialScores());
   const [lead, setLead] = useState({ name: '', email: '' });
+  const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
 
   const currentQuestion = mockQuestions[qIndex];
   const progress = ((qIndex) / mockQuestions.length) * 100;
@@ -49,7 +50,9 @@ function App() {
   const handleLeadSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (lead.name.trim()) {
-      setScreen('result');
+      const result = analyzeUser(scores, mockRoles);
+      setAnalysis(result);
+      setScreen('result-category');
     }
   };
 
@@ -57,6 +60,7 @@ function App() {
     setScores(getInitialScores());
     setQIndex(0);
     setLead({ name: '', email: '' });
+    setAnalysis(null);
     setScreen('intro');
   };
 
@@ -88,9 +92,18 @@ function App() {
             <p style={{ color: 'var(--text-secondary)', marginBottom: '2.5rem', fontSize: '1.1rem', lineHeight: '1.6' }}>
               Com base na Matriz de Carreira PM3, identifique os papéis em Produto e Tecnologia que mais combinam com o seu perfil, seja você especialista ou generalista, executor ou líder.
             </p>
-            <button className="btn-primary" onClick={handleStart} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              Iniciar Avaliação <ChevronRight size={20} />
-            </button>
+            
+            <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-glass)', borderRadius: '12px', padding: '1.2rem', marginBottom: '2.5rem', maxWidth: '500px', margin: '0 auto 2.5rem' }}>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.5' }}>
+                Não há resposta certa ou errada. Todas as respostas apenas demonstram seu viés no momento de tomar uma decisão.
+              </p>
+            </div>
+
+            <div>
+              <button className="btn-primary" onClick={handleStart} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                Iniciar Avaliação <ChevronRight size={20} />
+              </button>
+            </div>
             <p style={{ marginTop: '1.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
               Leva menos de 3 minutos.
             </p>
@@ -152,19 +165,52 @@ function App() {
           </motion.div>
         )}
 
-        {screen === 'result' && (
-          <motion.div key="result" {...fadeVariants} className="glass-panel" style={{ padding: '3rem' }}>
+        {screen === 'result-category' && analysis && (
+          <motion.div key="result-category" {...fadeVariants} className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+              <div style={{ background: 'var(--brand-gradient)', padding: '16px', borderRadius: '50%' }}>
+                <Target size={40} color="white" />
+              </div>
+            </div>
+            
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+              Seu perfil dominante é:
+            </p>
+            <h2 style={{ fontSize: '3rem', marginBottom: '1.5rem', textTransform: 'uppercase' }} className="text-gradient">
+              {analysis.dominantCategory}
+            </h2>
+            
+            <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '1.5rem', color: 'white' }}>
+              Sua forma de resolver problemas mostrou um viés forte por <strong>{analysis.dominantCategory.toUpperCase()}</strong> — {analysis.dominantPattern}.
+            </p>
+
+            {analysis.secondaryCategory && (
+              <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '2.5rem', padding: '1rem', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', display: 'inline-block' }}>
+                <span style={{ opacity: 0.7 }}>Influência secundária:</span> <strong style={{ color: '#d8b4fe', opacity: 1 }}>{analysis.secondaryCategory}</strong>
+              </p>
+            )}
+            
+            <div style={{ display: 'block' }}>
+              <button className="btn-primary" onClick={() => setScreen('result-roles')} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                Ver meus cargos ideais <ArrowRight size={20} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {screen === 'result-roles' && analysis && (
+          <motion.div key="result-roles" {...fadeVariants} className="glass-panel" style={{ padding: '3rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
               <h2 style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
                 Seu Match de <span className="text-gradient">Carreira</span>
               </h2>
               <p style={{ color: 'var(--text-secondary)' }}>
-                Baseado nas suas respostas, aqui estão os 3 papéis mais compatíveis.
+                Baseado no seu perfil dominante ({analysis.dominantCategory}), aqui estão os 3 papéis mais compatíveis na matriz.
               </p>
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
-              {calculateTopRoles(scores, mockRoles).map((match, idx) => (
+              {analysis.topRoles.map((match, idx) => (
                 <div key={match.role.id} style={{
                   background: 'rgba(255,255,255,0.03)',
                   border: '1px solid var(--border-glass)',
