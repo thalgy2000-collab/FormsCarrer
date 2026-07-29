@@ -4,6 +4,7 @@ import { ChevronRight, Target, Sparkles, RefreshCcw, ArrowRight } from 'lucide-r
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
 import { getInitialScores, analyzeUser, type AnalysisResult } from './utils/scoring';
+import { supabase } from './lib/supabaseClient';
 import type { UserScores, QuestionOption, Category } from './types';
 import './index.css';
 
@@ -11,6 +12,7 @@ function App() {
   const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result-category' | 'result-roles'>('intro');
   const [qIndex, setQIndex] = useState(0);
   const [scores, setScores] = useState<UserScores>(getInitialScores());
+  const [answers, setAnswers] = useState<string[]>([]);
   const [lead, setLead] = useState({ name: '', email: '' });
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
 
@@ -39,6 +41,7 @@ function App() {
     }
 
     setScores(newScores);
+    setAnswers(prev => [...prev, option.text]);
 
     if (qIndex < mockQuestions.length - 1) {
       setQIndex(qIndex + 1);
@@ -52,12 +55,38 @@ function App() {
     if (lead.name.trim()) {
       const result = analyzeUser(scores, mockRoles);
       setAnalysis(result);
+      
+      // Fire and forget Supabase insert
+      const saveToSupabase = async () => {
+        try {
+          const payload = {
+            name: lead.name,
+            email: lead.email || null,
+            answers: answers,
+            score_x: scores.axis.x,
+            score_y: scores.axis.y,
+            category_scores: scores.categories,
+            dominant_category: result.dominantCategory,
+            secondary_category: result.secondaryCategory,
+            top_3_cargos: result.topRoles.map(r => ({ name: r.role.name, score: r.score }))
+          };
+          const { error } = await supabase.from('quiz_responses').insert([payload]);
+          if (error) {
+            console.error('Silent error: Failed to save to Supabase:', error);
+          }
+        } catch (err) {
+          console.error('Unexpected error while saving to Supabase:', err);
+        }
+      };
+      saveToSupabase();
+
       setScreen('result-category');
     }
   };
 
   const handleReset = () => {
     setScores(getInitialScores());
+    setAnswers([]);
     setQIndex(0);
     setLead({ name: '', email: '' });
     setAnalysis(null);
