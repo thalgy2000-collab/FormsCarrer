@@ -374,9 +374,21 @@ function App() {
                               </h4>
                               <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
-                                  <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
-                                    {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}
-                                  </span>
+                                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                                    <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
+                                      {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}
+                                    </span>
+                                    {richContent.salaryRange.panoramaAverage && (
+                                      <div style={{ display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '16px' }}>
+                                        <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>
+                                          {richContent.salaryRange.panoramaAverageLabel || 'Média'}
+                                        </span>
+                                        <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#d8b4fe' }}>
+                                          {richContent.salaryRange.currency} {richContent.salaryRange.panoramaAverage.toLocaleString('pt-BR')}
+                                        </span>
+                                      </div>
+                                    )}
+                                  </div>
                                   <span style={{ 
                                     fontSize: '0.75rem', 
                                     padding: '2px 8px', 

@@ -2,7 +2,14 @@ export interface RoleContent {
   category: string;
   tagline: string;
   description: string;
-  salaryRange: { min: number; max: number; currency: string; period: string };
+  salaryRange: { 
+    min: number; 
+    max: number; 
+    currency: string; 
+    period: string;
+    panoramaAverage?: number;
+    panoramaAverageLabel?: string;
+  };
   salaryConfidence: 'baixa' | 'media' | 'alta';
   salarySource: string;
   insights: Array<{
@@ -124,6 +131,39 @@ export const roleContents: Record<string, RoleContent> = {
     salaryConfidence: "media",
     salarySource: "Panorama de Mercado de Produto 2024-2025 · PM3",
     insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
+  },
+  "Associate/Junior PM": {
+    category: "Produto",
+    tagline: "PM em início de carreira, atua com escopo delimitado sob mentoria.",
+    description: "O Associate/Junior PM está no começo da jornada em Produto. Costuma atuar em um escopo bem delimitado — uma feature, um fluxo, um squad específico — com forte apoio de um PM mais sênior ou de um Product Lead. Ajuda a rodar discovery, escrever histórias, acompanhar métricas e destravar entregas do time. Nessa fase, o foco é construir repertório: entender ritual de squad, aprender a conversar com dados, engenharia e design, e desenvolver julgamento sobre priorização. Uma boa vaga de Associate/Junior PM combina responsabilidade real, mentoria consistente e exposição a diferentes tipos de problema de produto.",
+    salaryRange: {
+      min: 5000,
+      max: 10000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 7767,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Associate Product Manager no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Entrada direta em Produto",
+        value: "4.9%",
+        description: "5% entraram direto em Produto, sem passagem por outra área antes.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 28"
+      }
+    ],
     recommendedTrack: {
       formacoes: [
         { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
