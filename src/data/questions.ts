@@ -33,12 +33,12 @@ export const mockQuestions: Question[] = [
   },
   {
     id: 'q4',
-    text: 'Seu time ganhou acesso a uma ferramenta de IA generativa e ninguém sabe bem como aplicá-la no produto. Qual seu papel nesse momento?',
+    text: 'Seu time ganhou acesso a uma ferramenta de IA generativa. Qual seria seu papel natural nesse momento?',
     options: [
-      { id: 'q4_a', text: 'Estudo os casos de uso técnicos e monto um protótipo de como a IA resolveria um problema real', scoreImpact: { axis: { x: -1 }, categories: { IA: 3 } } },
-      { id: 'q4_b', text: 'Penso em como isso muda a estratégia de produto e o posicionamento no mercado', scoreImpact: { axis: { x: 1 }, categories: { Estratégia: 2, IA: 1 } } },
-      { id: 'q4_c', text: 'Levanto dados de onde a IA teria mais impacto mensurável hoje', scoreImpact: { categories: { Dados: 2, IA: 1 } } },
-      { id: 'q4_d', text: 'Foco em como isso vai ser recebido pelo usuário e onde geraria mais valor de experiência', scoreImpact: { categories: { Design: 1, Pesquisa: 2 } } },
+      { id: 'q4_a', text: 'Testar tecnicamente os modelos, avaliar limitações e montar um protótipo funcional de como resolveria um problema real', scoreImpact: { axis: { x: -2 }, categories: { IA: 3 } } },
+      { id: 'q4_b', text: 'Traduzir isso em requisitos claros pro time técnico e organizar o backlog do que testar primeiro', scoreImpact: { axis: { x: -1 }, categories: { IA: 2, Produto: 1 } } },
+      { id: 'q4_c', text: 'Pensar em como isso muda a estratégia de produto e o posicionamento da empresa no médio prazo', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 2, IA: 1 } } },
+      { id: 'q4_d', text: 'Focar em como isso seria recebido pelo usuário e onde geraria mais valor de experiência', scoreImpact: { categories: { Design: 1, Pesquisa: 2 } } },
     ]
   },
   {
@@ -48,17 +48,17 @@ export const mockQuestions: Question[] = [
       { id: 'q5_a', text: 'Assisto a uma gravação de sessão dele usando o produto pra ver onde travou', scoreImpact: { categories: { Design: 2, Pesquisa: 2 } } },
       { id: 'q5_b', text: 'Puxo o funil de uso dele nos dados pra ver em que etapa ele parou', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
       { id: 'q5_c', text: 'Agendo uma entrevista rápida com ele pra entender o contexto completo', scoreImpact: { categories: { Pesquisa: 3 } } },
-      { id: 'q5_d', text: 'Verifico se isso é um padrão recorrente entre vários usuários parecidos', scoreImpact: { categories: { Insights: 3 } } },
+      { id: 'q5_d', text: 'Verifico se isso é um padrão recorrente entre vários usuários parecidos, cruzando com outras fontes de dado', scoreImpact: { categories: { Insights: 3 } } },
     ]
   },
   {
     id: 'q6',
-    text: 'A empresa precisa crescer rápido, mas a função ainda não está 100% validada. Qual sua abordagem?',
+    text: 'A empresa quer melhorar ativação de novos usuários (transformar quem se cadastra em quem realmente usa o produto). Por onde você começa?',
     options: [
-      { id: 'q6_a', text: 'Rodo experimentos rápidos de aquisição e vejo o que converte antes de escalar', scoreImpact: { categories: { Growth: 3 } } },
-      { id: 'q6_b', text: 'Insisto em validar melhor com usuários antes de qualquer esforço de crescimento', scoreImpact: { categories: { Pesquisa: 2, Insights: 1 } } },
-      { id: 'q6_c', text: 'Analiso os dados de coorte pra saber se o crescimento seria sustentável', scoreImpact: { categories: { Dados: 3 } } },
-      { id: 'q6_d', text: 'Discuto com a liderança se faz sentido crescer agora ou esperar mais maturidade', scoreImpact: { axis: { y: 1 }, categories: { Estratégia: 2 } } },
+      { id: 'q6_a', text: 'Redesenho o onboarding pra ficar mais simples e destaco o "aha moment" mais rápido possível', scoreImpact: { categories: { Growth: 2, Design: 2 } } },
+      { id: 'q6_b', text: 'Rodo experimentos e testes A/B no fluxo de ativação, olhando métricas como D1/D7/D30', scoreImpact: { categories: { Growth: 3 } } },
+      { id: 'q6_c', text: 'Analiso os dados de coorte pra entender exatamente onde a maioria desiste', scoreImpact: { categories: { Dados: 3 } } },
+      { id: 'q6_d', text: 'Entrevisto quem abandonou no meio do processo pra entender o motivo real', scoreImpact: { categories: { Pesquisa: 3 } } },
     ]
   },
   {
@@ -75,30 +75,30 @@ export const mockQuestions: Question[] = [
     id: 'q8',
     text: 'Um concorrente lança uma feature muito parecida com a sua, antes de você. O que você faz primeiro?',
     options: [
-      { id: 'q8_a', text: 'Reavalio o posicionamento do produto e onde ainda temos vantagem real', scoreImpact: { axis: { x: 1 }, categories: { Estratégia: 3 } } },
-      { id: 'q8_b', text: 'Testo mensagens/campanhas rápidas pra reforçar por que o nosso é melhor', scoreImpact: { categories: { Growth: 3 } } },
+      { id: 'q8_a', text: 'Reavalio o posicionamento do produto e onde ainda temos vantagem competitiva sustentável', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
+      { id: 'q8_b', text: 'Testo mensagens/campanhas rápidas de retenção pra reforçar por que o nosso é melhor', scoreImpact: { categories: { Growth: 3 } } },
       { id: 'q8_c', text: 'Comparo a experiência de uso das duas soluções lado a lado', scoreImpact: { categories: { Design: 2, Pesquisa: 1 } } },
       { id: 'q8_d', text: 'Olho os dados de retenção pra ver se isso realmente ameaça nossos usuários', scoreImpact: { categories: { Dados: 2 } } },
     ]
   },
   {
     id: 'q9',
-    text: 'Você está liderando um time júnior que está travado numa decisão técnica complexa. Como age?',
+    text: 'Você está em início de carreira em Produto, atuando num escopo bem delimitado (uma feature, um fluxo específico) com apoio de alguém mais sênior. Como você encara essa fase?',
     options: [
-      { id: 'q9_a', text: 'Sento com o time e ajudo a destravar tecnicamente, ensinando no processo', scoreImpact: { axis: { y: 2 }, categories: { Engenharia: 2 } } },
-      { id: 'q9_b', text: 'Dou autonomia e cobro entregas, sem entrar no detalhe técnico', scoreImpact: { axis: { x: 1, y: 3 } } },
-      { id: 'q9_c', text: 'Trago outras áreas (dados, produto) pra ajudar a desbloquear com outra perspectiva', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
-      { id: 'q9_d', text: 'Uso esse momento pra formar as pessoas, mesmo que leve mais tempo', scoreImpact: { axis: { y: 3 }, categories: { Produto: 1 } } },
+      { id: 'q9_a', text: 'Quero aproveitar pra construir repertório: aprender a conversar com dados, engenharia e design de perto', scoreImpact: { axis: { x: -2, y: -2 }, categories: { Produto: 1 } } },
+      { id: 'q9_b', text: 'Quero logo ampliar meu escopo e conectar mais áreas, mesmo ainda júnior', scoreImpact: { axis: { x: 1, y: -1 } } },
+      { id: 'q9_c', text: 'Prefiro já pensar em quando vou liderar pessoas, mais do que só executar', scoreImpact: { axis: { y: 2 } } },
+      { id: 'q9_d', text: 'Prefiro me aprofundar tecnicamente numa área específica antes de pensar em outra coisa', scoreImpact: { axis: { x: -2 }, categories: { Engenharia: 1 } } },
     ]
   },
   {
     id: 'q10',
-    text: 'O tráfego do produto está alto, mas a ativação de novos usuários está baixa. Por onde você começa?',
+    text: 'Um time júnior está travado numa decisão técnica complexa e recorre a você. Como você age?',
     options: [
-      { id: 'q10_a', text: 'Rodo testes A/B no fluxo de ativação pra ver o que melhora a conversão', scoreImpact: { categories: { Growth: 3 } } },
-      { id: 'q10_b', text: 'Analiso os dados de funil pra achar exatamente onde o usuário desiste', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
-      { id: 'q10_c', text: 'Redesenho o onboarding pra ficar mais simples e intuitivo', scoreImpact: { categories: { Design: 3 } } },
-      { id: 'q10_d', text: 'Entrevisto usuários que abandonaram no meio do onboarding', scoreImpact: { categories: { Pesquisa: 3 } } },
+      { id: 'q10_a', text: 'Sento com o time e ajudo a destravar tecnicamente, ensinando no processo', scoreImpact: { axis: { y: 2 }, categories: { Engenharia: 2 } } },
+      { id: 'q10_b', text: 'Dou autonomia e cobro entregas, sem entrar no detalhe técnico', scoreImpact: { axis: { x: 1, y: 3 } } },
+      { id: 'q10_c', text: 'Trago outras áreas (dados, produto) pra ajudar a desbloquear com outra perspectiva', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
+      { id: 'q10_d', text: 'Uso esse momento pra formar as pessoas com calma, mesmo que leve mais tempo', scoreImpact: { axis: { y: 3 }, categories: { Produto: 1 } } },
     ]
   },
   {
@@ -118,35 +118,35 @@ export const mockQuestions: Question[] = [
       { id: 'q12_a', text: 'Aprofundo a análise nos dados pra confirmar se é estatisticamente relevante', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
       { id: 'q12_b', text: 'Cruzo com entrevistas qualitativas pra entender o "porquê" por trás do padrão', scoreImpact: { categories: { Pesquisa: 2, Insights: 2 } } },
       { id: 'q12_c', text: 'Penso em como isso pode virar uma nova frente estratégica de produto', scoreImpact: { axis: { x: 1 }, categories: { Estratégia: 2 } } },
-      { id: 'q12_d', text: 'Já penso em como resolver isso via automação ou IA', scoreImpact: { categories: { IA: 2, Engenharia: 1 } } },
+      { id: 'q12_d', text: 'Avalio se dá pra resolver isso incorporando um modelo de IA que aprenda o padrão automaticamente', scoreImpact: { categories: { IA: 2, Engenharia: 1 } } },
     ]
   },
   {
     id: 'q13',
-    text: 'Você prefere ser reconhecido por:',
+    text: 'Se você tivesse que escolher, prefere:',
     options: [
-      { id: 'q13_a', text: 'Ser a pessoa mais funda tecnicamente num tema específico do produto', scoreImpact: { axis: { x: -3 } } },
-      { id: 'q13_b', text: 'Ser a pessoa que consegue conectar qualquer área do negócio pra resolver problemas', scoreImpact: { axis: { x: 3 } } },
+      { id: 'q13_a', text: 'Ser o melhor em uma coisa muito específica', scoreImpact: { axis: { x: -3 } } },
+      { id: 'q13_b', text: 'Ser bom o suficiente em várias coisas pra conectar tudo', scoreImpact: { axis: { x: 3 } } },
     ]
   },
   {
     id: 'q14',
-    text: 'Vários squads pedem prioridade ao mesmo tempo e o recurso é escasso. Qual seu instinto?',
+    text: 'Você seria a pessoa responsável por toda a estratégia de produto de uma empresa (falando direto com CEO e conselho, orientando investimento e inovação). Como isso soa pra você hoje?',
     options: [
-      { id: 'q14_a', text: 'Crio um processo claro de priorização pra que isso não vire caos de novo', scoreImpact: { axis: { y: 2 }, categories: { Operações: 3 } } },
-      { id: 'q14_b', text: 'Decido com base no que move mais a estratégia da empresa como um todo', scoreImpact: { axis: { y: 1 }, categories: { Estratégia: 3 } } },
-      { id: 'q14_c', text: 'Levanto dados de impacto de cada pedido antes de decidir', scoreImpact: { categories: { Dados: 2 } } },
-      { id: 'q14_d', text: 'Delego a decisão pros próprios líderes dos squads chegarem a um acordo', scoreImpact: { axis: { x: 1, y: 3 } } },
+      { id: 'q14_a', text: 'Ainda não é o momento — prefiro focar em ganhar profundidade técnica ou de execução primeiro', scoreImpact: { axis: { x: -2, y: -2 } } },
+      { id: 'q14_b', text: 'Faz total sentido pro meu momento — já penso nesse nível de escopo hoje', scoreImpact: { axis: { x: 3, y: 3 }, categories: { Estratégia: 2 } } },
+      { id: 'q14_c', text: 'Topo, mas prefiro chegar lá formando processos e pessoas no caminho, não só pela visão', scoreImpact: { axis: { y: 2 }, categories: { Operações: 1 } } },
+      { id: 'q14_d', text: 'Prefiro influenciar decisões desse nível sem carregar a responsabilidade executiva final', scoreImpact: { axis: { y: 1 }, categories: { Estratégia: 1 } } },
     ]
   },
   {
     id: 'q15',
-    text: 'Você virou responsável por formar quem vai ocupar seu cargo atual no futuro. Isso te deixa:',
+    text: 'Qual dessas afirmações mais soa como "eu" hoje em dia?',
     options: [
-      { id: 'q15_a', text: 'Desconfortável — prefiro continuar sendo o(a) especialista de referência no time', scoreImpact: { axis: { x: -2, y: -2 } } },
-      { id: 'q15_b', text: 'Animado(a) — quero crescer pra um papel ainda mais amplo e estratégico', scoreImpact: { axis: { x: 2, y: 3 } } },
-      { id: 'q15_c', text: 'Neutro — topo fazer, mas meu foco principal continua sendo entregar bem', scoreImpact: { axis: { x: -1, y: 1 } } },
-      { id: 'q15_d', text: 'Motivado(a) a estruturar processos pra isso ser replicável, não só sobre mim', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
+      { id: 'q15_a', text: 'Estou construindo experiência de execução, quero aprender fazendo', scoreImpact: { axis: { x: -1, y: -2 } } },
+      { id: 'q15_b', text: 'Já sei executar bem, quero aprender a pensar estratégia/negócio', scoreImpact: { axis: { x: 1, y: 1 } } },
+      { id: 'q15_c', text: 'Já penso estratégia, quero aprender a formar/liderar times', scoreImpact: { axis: { y: 2 } } },
+      { id: 'q15_d', text: 'Já lidero, quero ampliar escopo (mais generalista/executivo)', scoreImpact: { axis: { x: 2, y: 2 } } },
     ]
   }
 ];
