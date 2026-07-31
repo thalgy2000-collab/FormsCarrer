@@ -115,5 +115,24 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "AI Product Specialist": {
+    category: "IA",
+    tagline: "Atua na aplicação prática da Inteligência Artificial em produtos digitais.",
+    description: "O AI Product Specialist atua na aplicação prática da Inteligência Artificial em produtos digitais. Seu papel é identificar oportunidades de uso de IA, avaliar modelos, apoiar experimentações e colaborar com equipes técnicas para incorporar recursos inteligentes aos produtos. Trabalha próximo de Product Managers, cientistas de dados e engenheiros de IA, traduzindo possibilidades tecnológicas em valor para o usuário e para o negócio. A função exige curiosidade, visão de Produto e entendimento dos fundamentos de IA generativa e machine learning. Pode evoluir para AI Product Manager, AI Strategy ou liderança em inovação.",
+    salaryRange: { min: 18000, max: 28000, currency: "BRL", period: "mensal" },
+    salaryConfidence: "media",
+    salarySource: "Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };

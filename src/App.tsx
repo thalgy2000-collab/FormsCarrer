@@ -395,11 +395,11 @@ function App() {
                             </div>
 
                             {/* Insights */}
-                            {richContent.insights.length > 0 && (
-                              <div>
-                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                                  <Lightbulb size={18} color="#a855f7" /> Insights do Panorama
-                                </h4>
+                            <div>
+                              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                <Lightbulb size={18} color="#a855f7" /> Insights do Panorama 2024-2025
+                              </h4>
+                              {richContent.insights.length > 0 ? (
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '8px' }}>
                                   {richContent.insights.map((insight, i) => (
                                     <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
@@ -410,8 +410,14 @@ function App() {
                                     </div>
                                   ))}
                                 </div>
-                              </div>
-                            )}
+                              ) : (
+                                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
+                                  <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
+                                    Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
+                                  </p>
+                                </div>
+                              )}
+                            </div>
 
                             {/* Trilha */}
                             <div>
