@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Target, Sparkles, RefreshCcw, ArrowRight } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Target, Sparkles, RefreshCcw, ArrowRight } from 'lucide-react';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
 import { getInitialScores, analyzeUser, type AnalysisResult } from './utils/scoring';
@@ -14,6 +14,7 @@ function App() {
   const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result-category' | 'result-roles'>('intro');
   const [qIndex, setQIndex] = useState(0);
   const [scores, setScores] = useState<UserScores>(getInitialScores());
+  const [scoresHistory, setScoresHistory] = useState<UserScores[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [lead, setLead] = useState({ name: '', email: '' });
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -24,8 +25,10 @@ function App() {
   const handleStart = () => setScreen('questions');
 
   const handleOptionSelect = (option: QuestionOption) => {
-    // Update scores
-    const newScores = { ...scores };
+    setScoresHistory(prev => [...prev, JSON.parse(JSON.stringify(scores))]);
+    
+    // Update scores using a deep copy to prevent mutating history states
+    const newScores = JSON.parse(JSON.stringify(scores));
     
     if (option.scoreImpact.axis) {
       newScores.axis.x += option.scoreImpact.axis.x || 0;
@@ -49,6 +52,20 @@ function App() {
       setQIndex(qIndex + 1);
     } else {
       setScreen('lead');
+    }
+  };
+
+  const handleBack = () => {
+    if (qIndex > 0) {
+      const newHistory = [...scoresHistory];
+      const previousScores = newHistory.pop();
+      
+      setQIndex(qIndex - 1);
+      setScoresHistory(newHistory);
+      if (previousScores) {
+        setScores(previousScores);
+      }
+      setAnswers(prev => prev.slice(0, -1));
     }
   };
 
@@ -89,6 +106,7 @@ function App() {
 
   const handleReset = () => {
     setScores(getInitialScores());
+    setScoresHistory([]);
     setAnswers([]);
     setQIndex(0);
     setLead({ name: '', email: '' });
@@ -143,17 +161,41 @@ function App() {
         )}
 
         {screen === 'questions' && (
-          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 2.5rem) clamp(1.5rem, 5vw, 2.5rem) clamp(4.5rem, 15vw, 5.5rem) clamp(1.5rem, 5vw, 2.5rem)', position: 'relative' }}>
+          <motion.div key={`q-${qIndex}`} {...fadeVariants} className="glass-panel" style={{ padding: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
             <div className="progress-container">
               <div className="progress-bar" style={{ width: `${progress}%` }}></div>
             </div>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1rem', fontWeight: 600, fontSize: 'clamp(0.9rem, 3.5vw, 1rem)' }}>
-              Pergunta {qIndex + 1} de {mockQuestions.length}
-            </p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+              <p style={{ color: 'var(--text-secondary)', margin: 0, fontWeight: 600, fontSize: 'clamp(0.9rem, 3.5vw, 1rem)' }}>
+                Pergunta {qIndex + 1} de {mockQuestions.length}
+              </p>
+              {qIndex > 0 && (
+                <button 
+                  onClick={handleBack}
+                  style={{ 
+                    background: 'transparent', 
+                    border: 'none', 
+                    color: 'var(--text-secondary)', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '4px',
+                    cursor: 'pointer',
+                    fontSize: 'clamp(0.85rem, 3.5vw, 0.95rem)',
+                    fontFamily: 'Outfit',
+                    padding: '4px 8px',
+                    borderRadius: '4px'
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.color = 'white'}
+                  onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+                >
+                  <ChevronLeft size={16} /> Voltar
+                </button>
+              )}
+            </div>
             <h2 style={{ fontSize: 'clamp(1.2rem, 5vw, 1.5rem)', marginBottom: '2rem', lineHeight: '1.4', wordBreak: 'break-word' }}>
               {currentQuestion.text}
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '1.5rem' }}>
               {currentQuestion.options.map((opt) => (
                 <button
                   key={opt.id}
@@ -165,7 +207,7 @@ function App() {
               ))}
             </div>
             
-            <div style={{ position: 'absolute', bottom: 'clamp(1rem, 4vw, 1.5rem)', left: '0', width: '100%', padding: '0 clamp(1rem, 5vw, 2.5rem)', textAlign: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
               <p style={{ fontSize: 'clamp(0.75rem, 3vw, 0.85rem)', color: 'rgba(255,255,255,0.35)', margin: 0, fontStyle: 'italic', lineHeight: '1.4' }}>
                 {DISCLAIMER_TEXT}
               </p>

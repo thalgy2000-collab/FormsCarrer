@@ -36,7 +36,7 @@ export function analyzeUser(
 
     // 4. Generate explanation
     let explanation = `Alinhamento de ${Math.round(normalizedAffinity * 100)}% com a área de ${role.category}. `;
-    explanation += `Sua posição nos eixos Especialista↔Generalista e Execução↔Liderança (X:${userX.toFixed(1)}, Y:${userY.toFixed(1)}) `;
+    explanation += `Sua posição nos eixos Especialista↔Generalista e Execução↔Liderança `;
     
     if (normalizedDistance < 0.2) {
       explanation += `é extremamente próxima ao exigido pelo cargo.`;
