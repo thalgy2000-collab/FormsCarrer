@@ -376,7 +376,7 @@ function App() {
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
                                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
                                     <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
-                                      {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}
+                                      {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}{richContent.salaryRange.maxOpenEnded ? '+' : ''}
                                     </span>
                                     {richContent.salaryRange.panoramaAverage && (
                                       <div style={{ display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '16px' }}>
@@ -403,6 +403,11 @@ function App() {
                                 <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
                                   Fonte: {richContent.salarySource} ({richContent.salaryRange.period})
                                 </p>
+                                {richContent.salaryRange.note && (
+                                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', margin: 0, marginTop: '4px', fontStyle: 'italic' }}>
+                                    {richContent.salaryRange.note}
+                                  </p>
+                                )}
                               </div>
                             </div>
 

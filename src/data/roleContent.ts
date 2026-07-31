@@ -5,10 +5,12 @@ export interface RoleContent {
   salaryRange: { 
     min: number; 
     max: number; 
+    maxOpenEnded?: boolean;
     currency: string; 
     period: string;
     panoramaAverage?: number;
     panoramaAverageLabel?: string;
+    note?: string;
   };
   salaryConfidence: 'baixa' | 'media' | 'alta';
   salarySource: string;
@@ -167,6 +169,42 @@ export const roleContents: Record<string, RoleContent> = {
     recommendedTrack: {
       formacoes: [
         { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
+  },
+  "CPO": {
+    category: "Liderança",
+    tagline: "Executivo responsável por toda a estratégia de Produto da empresa.",
+    description: "O Chief Product Officer é o executivo responsável por toda a estratégia de Produto da empresa. Define a visão de longo prazo, lidera grandes estruturas organizacionais e garante que todas as iniciativas estejam alinhadas aos objetivos do negócio. Atua diretamente com CEO, Conselho e demais executivos para orientar investimentos, inovação e crescimento. Além da liderança de pessoas, é responsável por fortalecer a cultura de Produto e criar vantagens competitivas sustentáveis. A posição exige profundo conhecimento em estratégia, gestão, mercado e liderança organizacional. É o mais alto cargo executivo da área de Produto.",
+    salaryRange: {
+      min: 28000,
+      max: 40000,
+      maxOpenEnded: true,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 29354,
+      panoramaAverageLabel: "Média Panorama 2024-2025",
+      note: "Pacotes seniores costumam incluir bônus e equity relevantes."
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de CPO no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
       ],
       sprints: [
         { title: "Curso de Roadmap de Produto e Priorização" },
