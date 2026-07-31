@@ -83,5 +83,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "AI Product Owner": {
+    category: "IA",
+    tagline: "Prioriza e organiza o desenvolvimento de produtos e funcionalidades baseadas em IA.",
+    description: "O AI Product Owner é responsável por priorizar e organizar o desenvolvimento de produtos e funcionalidades baseadas em Inteligência Artificial. Atua como ponte entre negócio, usuários e equipes técnicas, transformando necessidades em requisitos claros e gerenciando o backlog do produto. Além das práticas tradicionais de Product Ownership, precisa compreender conceitos de IA, qualidade dos modelos, limitações tecnológicas e critérios de validação. Trabalha próximo de Product Managers, Engenheiros e Cientistas de Dados para garantir entregas de valor. A evolução natural inclui AI Product Manager ou posições estratégicas em Produtos de IA.",
+    salaryRange: { min: 10000, max: 14000, currency: "BRL", period: "mensal" },
+    salaryConfidence: "media",
+    salarySource: "Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      },
+      {
+        title: "Origem profissional: Tecnologia",
+        value: "26.1%",
+        description: "Antes de atuar em Produto, 26% dos respondentes vinham da área de Tecnologia — a origem mais comum.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 22"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
