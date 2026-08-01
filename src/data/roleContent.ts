@@ -296,5 +296,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Engineering Manager": {
+    category: "Engenharia",
+    tagline: "Lidera equipes de Engenharia, com foco em pessoas, processos e execução técnica.",
+    description: "O Engineering Manager lidera equipes de Engenharia, sendo responsável pelo desenvolvimento das pessoas, organização do trabalho e execução técnica dos projetos. Atua na contratação, feedback, evolução da equipe e definição de processos, além de colaborar com líderes de Produto para transformar estratégia em entregas consistentes. Diferentemente do Tech Lead, dedica maior parte do tempo à gestão e menos à implementação técnica. É uma posição que exige liderança, visão sistêmica e capacidade de tomada de decisão. A carreira pode evoluir para Director of Engineering, VP de Engenharia ou CTO.",
+    salaryRange: {
+      min: 18000,
+      max: 26000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de gestão sênior em times de engenharia. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Tecnologia",
+        value: "26.1%",
+        description: "Antes de atuar em Produto, 26% dos respondentes vinham da área de Tecnologia — a origem mais comum.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 22"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
