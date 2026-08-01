@@ -3,12 +3,12 @@ import type { Question } from '../types';
 export const mockQuestions: Question[] = [
   {
     id: 'q1',
-    text: 'A conversão do produto caiu 15% do dia pra noite, sem aviso. Qual é sua primeira ação?',
+    text: 'Quando você imagina o que te faria sentir mais realizado(a) no trabalho, o que soa mais verdadeiro?',
     options: [
-      { id: 'q1_a', text: 'Abro os dashboards e crio segmentações pra achar em que etapa do funil começou a queda', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
-      { id: 'q1_b', text: 'Ligo pra 5 usuários que cancelaram essa semana pra entender o que mudou na experiência deles', scoreImpact: { categories: { Pesquisa: 3 } } },
-      { id: 'q1_c', text: 'Verifico se algum deploy recente quebrou alguma parte do fluxo técnico', scoreImpact: { axis: { x: -1 }, categories: { Engenharia: 3 } } },
-      { id: 'q1_d', text: 'Reúno o time, comunico que isso é prioridade #1 e distribuo quem investiga o quê', scoreImpact: { categories: { Operações: 2 } } },
+      { id: 'q1_a', text: 'Descobrir um insight escondido nos números que ninguém tinha visto', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
+      { id: 'q1_b', text: 'Entender profundamente por que as pessoas se comportam de um jeito', scoreImpact: { categories: { Pesquisa: 3 } } },
+      { id: 'q1_c', text: 'Resolver um quebra-cabeça técnico complexo com elegância', scoreImpact: { axis: { x: -1 }, categories: { Engenharia: 3 } } },
+      { id: 'q1_d', text: 'Ver um time inteiro funcionando de forma fluida por causa de algo que você organizou', scoreImpact: { categories: { Operações: 2 } } },
     ]
   },
   {
@@ -63,22 +63,22 @@ export const mockQuestions: Question[] = [
   },
   {
     id: 'q7',
-    text: 'O time precisa cortar 30% do backlog por restrição de recurso. Como você decide o que corta?',
+    text: 'No fundo, o que te dá mais segurança pra tomar uma decisão difícil?',
     options: [
-      { id: 'q7_a', text: 'Corto com base no que gera menos impacto de negócio, olhando os números', scoreImpact: { axis: { x: 1 }, categories: { Dados: 2 } } },
-      { id: 'q7_b', text: 'Reavalio a estratégia geral e corto o que menos se conecta com a visão de longo prazo', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
-      { id: 'q7_c', text: 'Reúno o time pra decidir junto e alinhar expectativas com todos os squads', scoreImpact: { categories: { Operações: 2 } } },
-      { id: 'q7_d', text: 'Priorizo o que resolve a dor mais forte que já ouvi diretamente dos usuários', scoreImpact: { categories: { Pesquisa: 2, Insights: 1 } } },
+      { id: 'q7_a', text: 'Ter números que sustentem a escolha', scoreImpact: { axis: { x: 1 }, categories: { Dados: 2 } } },
+      { id: 'q7_b', text: 'Confiar na visão de longo prazo que você já construiu', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
+      { id: 'q7_c', text: 'Saber que todo mundo entende e concorda com o processo usado pra decidir', scoreImpact: { categories: { Operações: 2 } } },
+      { id: 'q7_d', text: 'Ter ouvido de perto quem realmente é afetado pela decisão', scoreImpact: { categories: { Pesquisa: 2, Insights: 1 } } },
     ]
   },
   {
     id: 'q8',
-    text: 'Um concorrente lança uma feature muito parecida com a sua, antes de você. O que você faz primeiro?',
+    text: 'Quando algo dá errado e todo mundo está olhando pra você, o que vem primeiro na sua cabeça?',
     options: [
-      { id: 'q8_a', text: 'Reavalio o posicionamento do produto e onde ainda temos vantagem competitiva sustentável', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
-      { id: 'q8_b', text: 'Testo mensagens/campanhas rápidas de retenção pra reforçar por que o nosso é melhor', scoreImpact: { categories: { Growth: 3 } } },
-      { id: 'q8_c', text: 'Comparo a experiência de uso das duas soluções lado a lado', scoreImpact: { categories: { Design: 2, Pesquisa: 1 } } },
-      { id: 'q8_d', text: 'Olho os dados de retenção pra ver se isso realmente ameaça nossos usuários', scoreImpact: { categories: { Dados: 2 } } },
+      { id: 'q8_a', text: '"Preciso repensar se nossa direção geral ainda faz sentido"', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
+      { id: 'q8_b', text: '"Preciso agir rápido e testar uma reação antes que a situação piore"', scoreImpact: { categories: { Growth: 3 } } },
+      { id: 'q8_c', text: '"Preciso entender como isso realmente afeta quem usa o produto"', scoreImpact: { categories: { Design: 2, Pesquisa: 1 } } },
+      { id: 'q8_d', text: '"Preciso olhar os números com calma antes de qualquer conclusão"', scoreImpact: { categories: { Dados: 2 } } },
     ]
   },
   {
