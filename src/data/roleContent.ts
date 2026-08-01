@@ -269,5 +269,32 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Design de Serviço" }
       ]
     }
+  },
+  "Diretor(a) de Produto": {
+    category: "Liderança",
+    tagline: "Define e executa a estratégia de Produto em nível organizacional.",
+    description: "O Product Director é responsável por definir e executar a estratégia de Produto em nível organizacional. Lidera Heads de Produto e gestores, garantindo alinhamento entre visão de longo prazo, objetivos de negócio e evolução do portfólio. Atua diretamente com a alta liderança na definição de investimentos, expansão de produtos, governança e indicadores estratégicos. Além da gestão de pessoas, é responsável por desenvolver uma cultura orientada ao cliente e à inovação. A função exige sólida experiência em liderança, visão de mercado e tomada de decisões de alto impacto. A evolução natural é para VP de Produto ou Chief Product Officer.",
+    salaryRange: {
+      min: 25000,
+      max: 35000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 29354,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Diretor de Produto / CPO no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
