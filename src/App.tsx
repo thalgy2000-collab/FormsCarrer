@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft, ChevronDown, ChevronUp, Target, Sparkles, Re
 import { roleContents } from './data/roleContent';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
+import { categoryDefaults } from './data/categoryDefaults';
 import { getInitialScores, analyzeUser, type AnalysisResult } from './utils/scoring';
 import { supabase } from './lib/supabaseClient';
 import type { UserScores, QuestionOption, Category } from './types';
@@ -12,7 +13,7 @@ import './index.css';
 const DISCLAIMER_TEXT = "Não há resposta certa ou errada. Todas as respostas apenas demonstram seu viés no momento de tomar uma decisão.";
 
 function App() {
-  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'loading' | 'result-category' | 'result-roles'>('intro');
+  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'loading' | 'result-category' | 'result-roles' | 'action-plan'>('intro');
   const [loadingIndex, setLoadingIndex] = useState(0);
   const [qIndex, setQIndex] = useState(0);
 
@@ -553,6 +554,113 @@ function App() {
             </div>
 
             <div style={{ textAlign: 'center' }}>
+              <button 
+                onClick={() => setScreen('action-plan')}
+                style={{ 
+                  background: 'var(--accent)', border: 'none', 
+                  color: 'white', padding: '16px 32px', borderRadius: '100px',
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  cursor: 'pointer', fontFamily: 'Outfit', fontWeight: 600, fontSize: '1.1rem'
+                }}
+              >
+                Ver meu plano de ação <ArrowRight size={18} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+
+        {screen === 'action-plan' && analysis && (
+          <motion.div
+            key="action-plan"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            style={{ width: '100%', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}
+          >
+            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '0 0 1rem 0' }}>Plano de Ação</h2>
+              <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
+                Seu próximo passo prático para migrar para <strong>{analysis.topRoles[0].role.name}</strong>.
+              </p>
+            </div>
+
+            {(() => {
+              const role = analysis.topRoles[0].role;
+              const content = roleContents[role.name];
+              const categoryDefault = categoryDefaults[role.category] || {
+                reading: { title: "N/A", author: "N/A", description: "Leitura não encontrada para esta categoria." },
+                nextSteps: ["Pesquisar mais sobre a área."]
+              };
+              const track = content?.recommendedTrack;
+              const reading = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading[0] : categoryDefault.reading;
+              const nextSteps = content?.nextSteps && content.nextSteps.length > 0 ? content.nextSteps : categoryDefault.nextSteps;
+
+              return (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                  {track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
+                    <div className="glass-panel">
+                      <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                        <Target size={20} /> Trilha PM3 Recomendada
+                      </h3>
+                      {track.formacoes.length > 0 && (
+                        <div style={{ marginBottom: '1rem' }}>
+                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Formações</h4>
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {track.formacoes.map((formacao, i) => (
+                              <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
+                                <div style={{ fontWeight: 600, color: 'white' }}>{formacao.title}</div>
+                                <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {track.sprints.length > 0 && (
+                        <div>
+                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Sprints</h4>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                            {track.sprints.map((sprint, i) => (
+                              <span key={i} style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#d8b4fe', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                {sprint.title}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="glass-panel">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                      <BookOpen size={20} /> Leitura Recomendada
+                    </h3>
+                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                      <div style={{ fontWeight: 600, color: 'white', fontSize: '1.1rem' }}>{reading.title}</div>
+                      <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>por {reading.author}</div>
+                      <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{reading.description}</p>
+                    </div>
+                  </div>
+
+                  <div className="glass-panel">
+                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                      <Sparkles size={20} /> Próximos Passos
+                    </h3>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      {nextSteps.map((step, i) => (
+                        <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', fontSize: '0.8rem', fontWeight: 600, flexShrink: 0 }}>
+                            {i + 1}
+                          </span>
+                          <span style={{ color: 'white', lineHeight: '1.5', marginTop: '2px' }}>{step}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              );
+            })()}
+
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
               <button 
                 onClick={handleReset}
                 style={{ 

@@ -24,6 +24,8 @@ export interface RoleContent {
     formacoes: Array<{ title: string; description: string; link?: string }>;
     sprints: Array<{ title: string; link?: string }>;
   };
+  recommendedReading?: Array<{ title: string; author: string; description: string }>;
+  nextSteps?: Array<string>;
 }
 
 export const roleContents: Record<string, RoleContent> = {
