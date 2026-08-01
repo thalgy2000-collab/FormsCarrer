@@ -12,8 +12,39 @@ import './index.css';
 const DISCLAIMER_TEXT = "Não há resposta certa ou errada. Todas as respostas apenas demonstram seu viés no momento de tomar uma decisão.";
 
 function App() {
-  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'result-category' | 'result-roles'>('intro');
+  const [screen, setScreen] = useState<'intro' | 'questions' | 'lead' | 'loading' | 'result-category' | 'result-roles'>('intro');
+  const [loadingIndex, setLoadingIndex] = useState(0);
   const [qIndex, setQIndex] = useState(0);
+
+  const loadingMessages = [
+    "Analisando sua tomada de decisão e Product Taste...",
+    "Cruzando seu perfil com as demandas do mercado de tecnologia...",
+    "Estruturando os próximos passos do seu PDI...",
+    "Tudo pronto!"
+  ];
+
+  React.useEffect(() => {
+    if (screen === 'loading') {
+      let currentIdx = 0;
+      setLoadingIndex(0);
+      const textInterval = setInterval(() => {
+        currentIdx++;
+        if (currentIdx < loadingMessages.length) {
+          setLoadingIndex(currentIdx);
+        }
+      }, 1500);
+
+      const timeout = setTimeout(() => {
+        clearInterval(textInterval);
+        setScreen('result-category');
+      }, 5500);
+
+      return () => {
+        clearInterval(textInterval);
+        clearTimeout(timeout);
+      };
+    }
+  }, [screen]);
   const [scores, setScores] = useState<UserScores>(getInitialScores());
   const [scoresHistory, setScoresHistory] = useState<UserScores[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -102,7 +133,7 @@ function App() {
       };
       saveToSupabase();
 
-      setScreen('result-category');
+      setScreen('loading');
     }
   };
 
@@ -250,6 +281,48 @@ function App() {
                 Ver Meus Resultados
               </button>
             </form>
+          </motion.div>
+        )}
+
+        {screen === 'loading' && (
+          <motion.div
+            key="loading"
+            {...fadeVariants}
+            className="glass-panel"
+            style={{ padding: 'clamp(3rem, 8vw, 5rem)', textAlign: 'center', minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '32px' }}>
+              <div style={{
+                width: '64px',
+                height: '64px',
+                border: '4px solid rgba(255, 255, 255, 0.1)',
+                borderLeftColor: '#a855f7',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite'
+              }} />
+              <div style={{ minHeight: '60px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <AnimatePresence mode="wait">
+                  <motion.h3
+                    key={loadingIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ fontSize: 'clamp(1.1rem, 4vw, 1.3rem)', fontWeight: 500, color: 'white', margin: 0, lineHeight: '1.4' }}
+                  >
+                    {loadingMessages[loadingIndex]}
+                  </motion.h3>
+                </AnimatePresence>
+              </div>
+            </div>
+            <style>
+              {`
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+              `}
+            </style>
           </motion.div>
         )}
 
