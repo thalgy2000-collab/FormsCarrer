@@ -237,5 +237,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Power BI: análises avançadas" }
       ]
     }
+  },
+  "Design Lead": {
+    category: "Design",
+    tagline: "Lidera equipes de Design responsáveis pela experiência dos produtos digitais da empresa.",
+    description: "O Design Lead lidera equipes de Design responsáveis pela experiência dos produtos digitais da empresa. Seu papel combina gestão de pessoas, definição de processos, garantia de qualidade e alinhamento estratégico entre Design, Produto e Engenharia. Além de orientar designers em seu desenvolvimento profissional, participa de decisões sobre design systems, discovery, pesquisa e evolução da experiência do usuário. É esperado que tenha forte capacidade de liderança, comunicação e visão sistêmica. A evolução natural inclui posições como Product Design Manager, Head of Design ou Diretor de Design.",
+    salaryRange: {
+      min: 15000,
+      max: 22000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de liderança sênior em Design. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Design",
+        value: "6.0%",
+        description: "6% dos respondentes vinham diretamente de Design antes de entrar em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 26"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Design", description: "Design de produto de ponta a ponta, do problema à interface." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de UI Design" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Design de Serviço" }
+      ]
+    }
   }
 };
