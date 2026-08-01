@@ -591,7 +591,7 @@ function App() {
                 reading: { title: "N/A", author: "N/A", description: "Leitura não encontrada para esta categoria." },
                 nextSteps: ["Pesquisar mais sobre a área."]
               };
-              const track = content?.recommendedTrack;
+              const track = content?.recommendedTrack || categoryDefault.recommendedTrack;
               const reading = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading[0] : categoryDefault.reading;
               const nextSteps = content?.nextSteps && content.nextSteps.length > 0 ? content.nextSteps : categoryDefault.nextSteps;
 
@@ -635,7 +635,15 @@ function App() {
                       <BookOpen size={20} /> Leitura Recomendada
                     </h3>
                     <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                      <div style={{ fontWeight: 600, color: 'white', fontSize: '1.1rem' }}>{reading.title}</div>
+                      <div style={{ fontWeight: 600, color: 'white', fontSize: '1.1rem', marginBottom: '2px' }}>
+                        {reading.link ? (
+                          <a href={reading.link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }} onMouseOver={(e) => e.currentTarget.style.color = '#d8b4fe'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
+                            {reading.title} <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>↗</span>
+                          </a>
+                        ) : (
+                          reading.title
+                        )}
+                      </div>
                       <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>por {reading.author}</div>
                       <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{reading.description}</p>
                     </div>

@@ -24,7 +24,7 @@ export interface RoleContent {
     formacoes: Array<{ title: string; description: string; link?: string }>;
     sprints: Array<{ title: string; link?: string }>;
   };
-  recommendedReading?: Array<{ title: string; author: string; description: string }>;
+  recommendedReading?: Array<{ title: string; author: string; description: string; link?: string }>;
   nextSteps?: Array<string>;
 }
 
