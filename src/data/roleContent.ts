@@ -212,5 +212,30 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Customer Insights Analyst": {
+    category: "Insights",
+    tagline: "Transforma dados de comportamento e pesquisas em conhecimento estratégico sobre os clientes.",
+    description: "O Customer Insights Analyst transforma dados de comportamento e pesquisas em conhecimento estratégico sobre os clientes. Analisa tendências, segmentações, jornadas e padrões de consumo para apoiar decisões de Produto, Marketing e Negócios. Trabalha frequentemente com bases quantitativas e qualitativas, utilizando ferramentas de analytics, BI e pesquisa. É uma função altamente analítica, mas que também exige capacidade de traduzir descobertas em recomendações acionáveis. Com o amadurecimento das empresas orientadas por dados, esse profissional pode evoluir para Customer Insights Manager, Product Analytics ou Product Strategy.",
+    salaryRange: {
+      min: 6000,
+      max: 10000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado das faixas de Analista de Produto e Business Analyst. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Analytics", description: "Métricas, análise e experimentação orientadas a dados." },
+        { title: "Formação Analista de Dados", description: "Da coleta à análise que sustenta decisões de negócio." }
+      ],
+      sprints: [
+        { title: "Curso de Métodos de Análise de Dados" },
+        { title: "Curso de SQL para Manipulação e Análise de Dados" },
+        { title: "Curso de Power BI: análises avançadas" }
+      ]
+    }
   }
 };
