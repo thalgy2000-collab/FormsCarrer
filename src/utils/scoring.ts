@@ -1,4 +1,5 @@
 import type { MatchResult, Role, UserScores } from '../types';
+import { mockQuestions } from '../data/questions';
 
 const MAX_DISTANCE = Math.sqrt(100 + 100); // 14.14, assuming 10x10 grid
 
@@ -13,9 +14,28 @@ export function analyzeUser(
   userScores: UserScores,
   roles: Role[]
 ): AnalysisResult {
-  // Find the maximum category score the user achieved to normalize affinities (scale 0 a 1)
-  const maxUserCategoryScore = Math.max(1, ...Object.values(userScores.categories));
+  // 1. Calculate the max possible points per category by iterating through all questions
+  //    and finding the highest category score available in any of its options.
+  const categoryMaxPossible: Record<string, number> = {};
   
+  mockQuestions.forEach(q => {
+    const questionCategoryMax: Record<string, number> = {};
+    
+    q.options.forEach(opt => {
+      if (opt.scoreImpact.categories) {
+        Object.entries(opt.scoreImpact.categories).forEach(([cat, val]) => {
+          if (!questionCategoryMax[cat] || val > questionCategoryMax[cat]) {
+            questionCategoryMax[cat] = val;
+          }
+        });
+      }
+    });
+
+    Object.entries(questionCategoryMax).forEach(([cat, val]) => {
+      categoryMaxPossible[cat] = (categoryMaxPossible[cat] || 0) + val;
+    });
+  });
+
   // Clamp user coordinates to the 0-10 scale defined by the matrix
   const userX = Math.max(0, Math.min(10, userScores.axis.x));
   const userY = Math.max(0, Math.min(10, userScores.axis.y));
@@ -27,12 +47,13 @@ export function analyzeUser(
     const distance = Math.sqrt(dx * dx + dy * dy);
     const normalizedDistance = Math.min(1, distance / MAX_DISTANCE);
 
-    // 2. Calculate Normalized Category Affinity (scale 0 a 1)
+    // 2. Calculate Normalized Category Affinity (scale 0 a 1) based on max possible
     const rawCategoryScore = userScores.categories[role.category] || 0;
-    const normalizedAffinity = Math.max(0, Math.min(1, rawCategoryScore / maxUserCategoryScore));
+    const maxPossibleForCategory = categoryMaxPossible[role.category] || 1; // fallback to 1 to avoid div/0
+    const normalizedAffinity = Math.max(0, Math.min(1, rawCategoryScore / maxPossibleForCategory));
 
-    // 3. Apply the custom formula: score_cargo = 0.6 * afinidade - 0.4 * distancia
-    const finalScore = (0.6 * normalizedAffinity) - (0.4 * normalizedDistance);
+    // 3. Apply the custom formula: score_cargo = 0.5 * afinidade - 0.5 * distancia
+    const finalScore = (0.5 * normalizedAffinity) - (0.5 * normalizedDistance);
 
     // 4. Generate explanation
     let explanation = `Alinhamento de ${Math.round(normalizedAffinity * 100)}% com a área de ${role.category}. `;

@@ -8,7 +8,7 @@ export const mockQuestions: Question[] = [
       { id: 'q1_a', text: 'Abro os dashboards e crio segmentações pra achar em que etapa do funil começou a queda', scoreImpact: { axis: { x: -1 }, categories: { Dados: 3 } } },
       { id: 'q1_b', text: 'Ligo pra 5 usuários que cancelaram essa semana pra entender o que mudou na experiência deles', scoreImpact: { categories: { Pesquisa: 3 } } },
       { id: 'q1_c', text: 'Verifico se algum deploy recente quebrou alguma parte do fluxo técnico', scoreImpact: { axis: { x: -1 }, categories: { Engenharia: 3 } } },
-      { id: 'q1_d', text: 'Reúno o time, comunico que isso é prioridade #1 e distribuo quem investiga o quê', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
+      { id: 'q1_d', text: 'Reúno o time, comunico que isso é prioridade #1 e distribuo quem investiga o quê', scoreImpact: { categories: { Operações: 2 } } },
     ]
   },
   {
@@ -25,10 +25,10 @@ export const mockQuestions: Question[] = [
     id: 'q3',
     text: 'Design e Engenharia entram em conflito sobre o prazo de uma feature. O que você faz?',
     options: [
-      { id: 'q3_a', text: 'Medio a conversa e ajudo os dois lados a chegar num meio-termo viável', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
+      { id: 'q3_a', text: 'Medio a conversa e ajudo os dois lados a chegar num meio-termo viável', scoreImpact: { categories: { Operações: 2 } } },
       { id: 'q3_b', text: 'Trago dados de impacto pra decidir objetivamente o que deve ser priorizado', scoreImpact: { axis: { x: -1 }, categories: { Dados: 2 } } },
       { id: 'q3_c', text: 'Repenso o fluxo de design pra reduzir o escopo técnico necessário', scoreImpact: { categories: { Design: 3 } } },
-      { id: 'q3_d', text: 'Escalo a decisão pra liderança, dado o impacto estratégico do atraso', scoreImpact: { axis: { y: 2 }, categories: { Estratégia: 2 } } },
+      { id: 'q3_d', text: 'Escalo a decisão pra liderança, dado o impacto estratégico do atraso', scoreImpact: { axis: { y: 1 }, categories: { Estratégia: 2 } } },
     ]
   },
   {
@@ -67,7 +67,7 @@ export const mockQuestions: Question[] = [
     options: [
       { id: 'q7_a', text: 'Corto com base no que gera menos impacto de negócio, olhando os números', scoreImpact: { axis: { x: 1 }, categories: { Dados: 2 } } },
       { id: 'q7_b', text: 'Reavalio a estratégia geral e corto o que menos se conecta com a visão de longo prazo', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
-      { id: 'q7_c', text: 'Reúno o time pra decidir junto e alinhar expectativas com todos os squads', scoreImpact: { axis: { y: 3 }, categories: { Operações: 2 } } },
+      { id: 'q7_c', text: 'Reúno o time pra decidir junto e alinhar expectativas com todos os squads', scoreImpact: { categories: { Operações: 2 } } },
       { id: 'q7_d', text: 'Priorizo o que resolve a dor mais forte que já ouvi diretamente dos usuários', scoreImpact: { categories: { Pesquisa: 2, Insights: 1 } } },
     ]
   },
@@ -93,12 +93,12 @@ export const mockQuestions: Question[] = [
   },
   {
     id: 'q10',
-    text: 'Um time júnior está travado numa decisão técnica complexa e recorre a você. Como você age?',
+    text: 'Um colega júnior está travado numa decisão técnica complexa e pede sua ajuda. Como você age?',
     options: [
-      { id: 'q10_a', text: 'Sento com o time e ajudo a destravar tecnicamente, ensinando no processo', scoreImpact: { axis: { y: 2 }, categories: { Engenharia: 2 } } },
-      { id: 'q10_b', text: 'Dou autonomia e cobro entregas, sem entrar no detalhe técnico', scoreImpact: { axis: { x: 1, y: 3 } } },
-      { id: 'q10_c', text: 'Trago outras áreas (dados, produto) pra ajudar a desbloquear com outra perspectiva', scoreImpact: { axis: { y: 2 }, categories: { Operações: 2 } } },
-      { id: 'q10_d', text: 'Uso esse momento pra formar as pessoas com calma, mesmo que leve mais tempo', scoreImpact: { axis: { y: 3 }, categories: { Produto: 1 } } },
+      { id: 'q10_a', text: 'Sento com ele e ajudo a destravar tecnicamente, explicando o raciocínio', scoreImpact: { categories: { Engenharia: 2 } } },
+      { id: 'q10_b', text: 'Dou algumas dicas de direção e cobro que ele resolva sozinho, com mais autonomia', scoreImpact: { axis: { x: 1, y: 1 } } },
+      { id: 'q10_c', text: 'Prefiro indicar alguém mais experiente pra ajudar — ainda não sinto que é meu papel resolver isso', scoreImpact: { axis: { y: -2 } } },
+      { id: 'q10_d', text: 'Trago outras áreas (dados, produto) pra ajudar a olhar o problema por outro ângulo', scoreImpact: { categories: { Operações: 2 } } },
     ]
   },
   {
@@ -108,7 +108,7 @@ export const mockQuestions: Question[] = [
       { id: 'q11_a', text: 'Peço um prazo mínimo pra puxar ao menos um dado essencial antes de decidir', scoreImpact: { axis: { x: -1 }, categories: { Dados: 2 } } },
       { id: 'q11_b', text: 'Decido com base na visão estratégica que já tenho do mercado e do produto', scoreImpact: { axis: { x: 2 }, categories: { Estratégia: 3 } } },
       { id: 'q11_c', text: 'Decido, mas já desenho como vamos medir se a decisão foi certa depois', scoreImpact: { categories: { Dados: 1, Produto: 2 } } },
-      { id: 'q11_d', text: 'Escalo o risco pra liderança antes de assumir a decisão sozinho', scoreImpact: { axis: { y: 2 } } },
+      { id: 'q11_d', text: 'Escalo o risco pra liderança antes de assumir a decisão sozinho', scoreImpact: {} },
     ]
   },
   {
@@ -134,9 +134,9 @@ export const mockQuestions: Question[] = [
     text: 'Você seria a pessoa responsável por toda a estratégia de produto de uma empresa (falando direto com CEO e conselho, orientando investimento e inovação). Como isso soa pra você hoje?',
     options: [
       { id: 'q14_a', text: 'Ainda não é o momento — prefiro focar em ganhar profundidade técnica ou de execução primeiro', scoreImpact: { axis: { x: -2, y: -2 } } },
-      { id: 'q14_b', text: 'Faz total sentido pro meu momento — já penso nesse nível de escopo hoje', scoreImpact: { axis: { x: 3, y: 3 }, categories: { Estratégia: 2 } } },
+      { id: 'q14_b', text: 'Faz total sentido pro meu momento — já penso nesse nível de escopo hoje', scoreImpact: { axis: { x: 2, y: 2 }, categories: { Estratégia: 2 } } },
       { id: 'q14_c', text: 'Topo, mas prefiro chegar lá formando processos e pessoas no caminho, não só pela visão', scoreImpact: { axis: { y: 2 }, categories: { Operações: 1 } } },
-      { id: 'q14_d', text: 'Prefiro influenciar decisões desse nível sem carregar a responsabilidade executiva final', scoreImpact: { axis: { y: 1 }, categories: { Estratégia: 1 } } },
+      { id: 'q14_d', text: 'Prefiro influenciar decisões desse nível sem carregar a responsabilidade executiva final', scoreImpact: { categories: { Estratégia: 1 } } },
     ]
   },
   {
@@ -145,8 +145,8 @@ export const mockQuestions: Question[] = [
     options: [
       { id: 'q15_a', text: 'Estou construindo experiência de execução, quero aprender fazendo', scoreImpact: { axis: { x: -1, y: -2 } } },
       { id: 'q15_b', text: 'Já sei executar bem, quero aprender a pensar estratégia/negócio', scoreImpact: { axis: { x: 1, y: 1 } } },
-      { id: 'q15_c', text: 'Já penso estratégia, quero aprender a formar/liderar times', scoreImpact: { axis: { y: 2 } } },
-      { id: 'q15_d', text: 'Já lidero, quero ampliar escopo (mais generalista/executivo)', scoreImpact: { axis: { x: 2, y: 2 } } },
+      { id: 'q15_c', text: 'Já penso estratégia, quero aprender a formar/liderar times', scoreImpact: { axis: { y: 1 } } },
+      { id: 'q15_d', text: 'Já lidero, quero ampliar escopo (mais generalista/executivo)', scoreImpact: { axis: { x: 2, y: 1 } } },
     ]
   }
 ];
