@@ -436,5 +436,45 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Growth Lead": {
+    category: "Growth",
+    tagline: "Lidera iniciativas voltadas ao crescimento sustentável do produto.",
+    description: "O Product Growth Manager lidera iniciativas voltadas ao crescimento sustentável do produto, buscando aumentar aquisição, ativação, retenção e receita. Trabalha continuamente com experimentação, análise de métricas e identificação de oportunidades para melhorar a jornada do usuário. Atua de forma integrada com Produto, Marketing, Dados e Engenharia para validar hipóteses e acelerar resultados. A função exige perfil analítico, domínio de métricas de crescimento e capacidade de priorizar iniciativas de alto impacto. Pode evoluir para Head of Growth, Diretor de Growth ou liderança estratégica de Produto.",
+    salaryRange: {
+      min: 9000,
+      max: 14000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 11250,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Product Growth no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em go-to-market",
+        value: "4.3/10",
+        description: "Profissionais avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar go-to-market.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 86"
+      },
+      {
+        title: "Origem profissional: Marketing e Comunicação",
+        value: "10.3%",
+        description: "10% vinham de Marketing/Comunicação, comum em perfis de growth e ciclo de vida.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 25"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Growth", description: "Aquisição, ativação, retenção e monetização." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Estratégia de Aquisição de clientes" },
+        { title: "Curso de Experimentação com Teste A/B" },
+        { title: "Curso de Métricas de Negócios Digitais" }
+      ]
+    }
   }
 };
