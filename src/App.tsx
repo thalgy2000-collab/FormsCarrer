@@ -141,7 +141,9 @@ function App() {
             nome: lead.name,
             email: lead.email,
             area: result.dominantCategory,
-            cargo: result.topRoles[0]?.role.name || '',
+            cargo1: result.topRoles[0]?.role.name || '',
+            cargo2: result.topRoles[1]?.role.name || '',
+            cargo3: result.topRoles[2]?.role.name || '',
             dataHora: new Date().toISOString()
           };
           await fetch('https://rebuff-user-ability.ngrok-free.dev/webhook-test/b9a367fa-2c9f-4b80-b75b-bb2aacdc6247', {
