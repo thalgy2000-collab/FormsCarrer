@@ -722,5 +722,45 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Power BI: análises avançadas" }
       ]
     }
+  },
+  "Product Data Analyst": {
+    category: "Dados",
+    tagline: "Transforma dados em conhecimento para apoiar decisões de Produto.",
+    description: "O Product Data Analyst transforma dados em conhecimento para apoiar decisões de Produto. Analisa comportamento dos usuários, métricas de negócio, funis, retenção e experimentos para identificar oportunidades de melhoria e validar hipóteses. Trabalha diariamente com ferramentas de Business Intelligence, SQL e plataformas de analytics, além de colaborar com Product Managers, Growth e Engenharia. Seu diferencial está em conectar análises quantitativas aos objetivos estratégicos do produto. É uma carreira altamente valorizada em empresas orientadas por dados e pode evoluir para Product Analytics Manager, Data Science ou Product Strategy.",
+    salaryRange: {
+      min: 6000,
+      max: 10000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 7900,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Data Analyst/Scientist/Engineer no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para análise de dados",
+        value: "4.8/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para análise de dados.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 56"
+      },
+      {
+        title: "Origem profissional: Dados",
+        value: "3.1%",
+        description: "3% vinham de Dados antes de atuarem em Produto — origem forte em perfis analíticos.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 30"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Analytics", description: "Métricas, análise e experimentação orientadas a dados." },
+        { title: "Formação Analista de Dados", description: "Da coleta à análise que sustenta decisões de negócio." }
+      ],
+      sprints: [
+        { title: "Curso de Métodos de Análise de Dados" },
+        { title: "Curso de SQL para Manipulação e Análise de Dados" },
+        { title: "Curso de Power BI: análises avançadas" }
+      ]
+    }
   }
 };
