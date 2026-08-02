@@ -794,5 +794,44 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Design de Serviço" }
       ]
     }
+  },
+  "Product Designer": {
+    category: "Design",
+    tagline: "Concebe soluções digitais conciliando necessidades dos usuários, negócio e restrições técnicas.",
+    description: "O Product Designer atua na concepção de soluções digitais que conciliam as necessidades dos usuários, os objetivos do negócio e as limitações técnicas. Participa de todas as etapas do desenvolvimento do produto, desde pesquisas e discovery até prototipação, validação e acompanhamento da implementação. Trabalha em estreita colaboração com Product Managers, Desenvolvedores e Pesquisadores para transformar problemas em experiências intuitivas e eficientes. Além de domínio em UX e UI, precisa compreender métricas, experimentação e estratégia de produto. A carreira pode evoluir para Design Lead, Product Design Manager, Head of Design ou posições estratégicas ligadas à inovação.",
+    salaryRange: {
+      min: 7000,
+      max: 11000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 8440,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Product Designer / Service Designer no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      },
+      {
+        title: "Origem profissional: Design",
+        value: "6.0%",
+        description: "6% dos respondentes vinham diretamente de Design antes de entrar em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 26"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Design", description: "Design de produto de ponta a ponta, do problema à interface." }
+      ],
+      sprints: [
+        { title: "Curso de UI Design" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Design de Serviço" }
+      ]
+    }
   }
 };
