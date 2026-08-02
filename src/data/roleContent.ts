@@ -370,5 +370,71 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Métricas de Negócios Digitais" }
       ]
     }
+  },
+  "GenAI Product Manager": {
+    category: "IA",
+    tagline: "Lidera produtos que aplicam IA generativa para criar novas experiências ao usuário.",
+    description: "O GenAI Product Manager lidera produtos que aplicam IA generativa para criar novas experiências, automações e capacidades de conteúdo. Domina prompt engineering, avaliação de LLMs, custos de inferência, riscos de alucinação e desenho de guardrails. Trabalha próximo a Engenharia, Design e Dados para desenhar fluxos onde o modelo é parte central do produto — não apenas uma feature. A carreira exige compreender rapidamente a fronteira móvel dos modelos disponíveis e traduzi-la em valor concreto para o usuário. Pode evoluir para AI Product Lead, Head of AI Products ou posições de estratégia em IA.",
+    salaryRange: {
+      min: 16000,
+      max: 25000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado de PM Sênior focado em GenAI (faixa em alta). Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
+  },
+  "Group PM": {
+    category: "Produto",
+    tagline: "Lidera um conjunto de produtos ou Product Managers, garantindo alinhamento estratégico.",
+    description: "O Group Product Manager lidera um conjunto de produtos ou Product Managers, garantindo alinhamento estratégico entre diferentes iniciativas. Atua menos na execução diária e mais na coordenação de múltiplos roadmaps, definição de prioridades e desenvolvimento da equipe. Trabalha diretamente com Heads de Produto e lideranças executivas para assegurar que os produtos evoluam de forma integrada aos objetivos do negócio. A função exige experiência consolidada em Product Management, liderança, comunicação e visão sistêmica. É uma etapa comum antes de assumir posições como Head de Produto ou Product Director.",
+    salaryRange: {
+      min: 18000,
+      max: 25000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 21410,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado de Head/GPM (R$ 21.410 em média) no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
