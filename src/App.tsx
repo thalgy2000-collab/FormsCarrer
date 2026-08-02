@@ -134,6 +134,29 @@ function App() {
       };
       saveToSupabase();
 
+      // Envia para o Webhook
+      const sendToWebhook = async () => {
+        try {
+          const webhookPayload = {
+            nome: lead.name,
+            email: lead.email,
+            area: result.dominantCategory,
+            cargo: result.topRoles[0]?.role.name || '',
+            dataHora: new Date().toISOString()
+          };
+          await fetch('http://localhost:5678/webhook-test/info-usuario', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(webhookPayload)
+          });
+        } catch (err) {
+          console.error('Erro ao enviar para o webhook:', err);
+        }
+      };
+      sendToWebhook();
+
       setScreen('loading');
     }
   };
