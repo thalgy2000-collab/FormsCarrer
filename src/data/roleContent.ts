@@ -437,7 +437,7 @@ export const roleContents: Record<string, RoleContent> = {
       ]
     }
   },
-  "Product Growth Lead": {
+  "Growth/Marketing Manager": {
     category: "Growth",
     tagline: "Lidera iniciativas voltadas ao crescimento sustentável do produto.",
     description: "O Product Growth Manager lidera iniciativas voltadas ao crescimento sustentável do produto, buscando aumentar aquisição, ativação, retenção e receita. Trabalha continuamente com experimentação, análise de métricas e identificação de oportunidades para melhorar a jornada do usuário. Atua de forma integrada com Produto, Marketing, Dados e Engenharia para validar hipóteses e acelerar resultados. A função exige perfil analítico, domínio de métricas de crescimento e capacidade de priorizar iniciativas de alto impacto. Pode evoluir para Head of Growth, Diretor de Growth ou liderança estratégica de Produto.",
@@ -831,6 +831,44 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de UI Design" },
         { title: "Curso de Design Thinking" },
         { title: "Curso de Design de Serviço" }
+      ]
+    }
+  },
+  "Product Growth Lead": {
+    category: "Growth",
+    tagline: "Lidera iniciativas de crescimento orientadas por experimentação.",
+    description: "O Product Growth Lead lidera a estratégia e a execução de crescimento orientadas pelo produto. Define hipóteses de aquisição, ativação, retenção e monetização, prioriza experimentos com maior potencial de impacto e conduz um time (ou uma tribo) de PMs, analistas e engenheiros focados em growth. Combina visão de funil ponta a ponta, forte cultura de experimentação e leitura fina de métricas de negócio. É referência técnica em growth loops, PLG e modelos de acquisition/retention, e faz a ponte entre o time de produto e áreas como Marketing, Vendas e Dados para escalar o crescimento de forma sustentável.",
+    salaryRange: {
+      min: 18000,
+      max: 25000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de Head/GPM aplicada a Growth. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em go-to-market",
+        value: "4.3/10",
+        description: "Profissionais avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar go-to-market.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 86"
+      },
+      {
+        title: "Origem profissional: Marketing e Comunicação",
+        value: "10.3%",
+        description: "10% vinham de Marketing/Comunicação, comum em perfis de growth e ciclo de vida.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 25"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Growth", description: "Aquisição, ativação, retenção e monetização." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Estratégia de Aquisição de clientes" },
+        { title: "Curso de Experimentação com Teste A/B" },
+        { title: "Curso de Métricas de Negócios Digitais" }
       ]
     }
   }
