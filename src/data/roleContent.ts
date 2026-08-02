@@ -612,5 +612,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Principal/Staff PM": {
+    category: "Produto",
+    tagline: "Referência técnica sênior em produto, atua transversalmente sem gerir pessoas.",
+    description: "O Principal / Staff PM é a referência técnica sênior de Produto na empresa. Atua transversalmente entre squads e tribos, resolvendo problemas de alta complexidade — arquitetura de produto, plataformas internas, decisões que atravessam várias áreas — sem, necessariamente, gerir pessoas. É um papel que combina profundidade técnica, visão sistêmica e forte influência sem autoridade formal. Ajuda a definir padrões, mentora PMs, participa de decisões estratégicas e costuma ser o par sênior de CPOs, Heads e líderes de Engenharia em temas que exigem mais senioridade individual do que gestão de time.",
+    salaryRange: {
+      min: 20000,
+      max: 30000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado do topo da faixa de Especialistas + Gestão Sênior. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
