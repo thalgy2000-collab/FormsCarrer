@@ -147,7 +147,8 @@ function App() {
           await fetch('https://rebuff-user-ability.ngrok-free.dev/webhook-test/b9a367fa-2c9f-4b80-b75b-bb2aacdc6247', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'ngrok-skip-browser-warning': 'true'
             },
             body: JSON.stringify(webhookPayload)
           });
