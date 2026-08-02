@@ -542,5 +542,43 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Design de Serviço" }
       ]
     }
+  },
+  "Lifecycle Manager": {
+    category: "Growth",
+    tagline: "Gerencia o ciclo de vida do cliente e comunicações de engajamento.",
+    description: "O Lifecycle Manager cuida da jornada completa do cliente após a aquisição: boas-vindas, adoção, expansão, reativação e prevenção de churn. Constrói réguas de comunicação multicanal (e-mail, push, in-app, SMS) acionadas por comportamento e por estágio do ciclo de vida, garantindo que a mensagem certa chegue no momento certo. Trabalha muito próximo de CRM, Growth, Produto e Dados, orquestrando ferramentas de automação e segmentação. Além de tocar campanhas, é responsável por medir impacto real em retenção, receita recorrente e satisfação, transformando o ciclo de vida em uma alavanca previsível de negócio.",
+    salaryRange: {
+      min: 10000,
+      max: 15000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de gestão em CRM/lifecycle. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em go-to-market",
+        value: "4.3/10",
+        description: "Profissionais avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar go-to-market.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 86"
+      },
+      {
+        title: "Origem profissional: Marketing e Comunicação",
+        value: "10.3%",
+        description: "10% vinham de Marketing/Comunicação, comum em perfis de growth e ciclo de vida.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 25"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Growth", description: "Aquisição, ativação, retenção e monetização." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Estratégia de Aquisição de clientes" },
+        { title: "Curso de Experimentação com Teste A/B" },
+        { title: "Curso de Métricas de Negócios Digitais" }
+      ]
+    }
   }
 };
