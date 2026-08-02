@@ -580,5 +580,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Métricas de Negócios Digitais" }
       ]
     }
+  },
+  "Portfolio Manager": {
+    category: "Estratégia",
+    tagline: "Gerencia o portfólio de produtos e alinhamento de investimentos.",
+    description: "O Portfolio Manager cuida da visão de conjunto: quais produtos e apostas compõem a oferta da empresa, quanto de investimento cada frente recebe e como cada iniciativa contribui para os objetivos estratégicos. Trabalha lado a lado com liderança executiva, PMs e finanças para priorizar, sequenciar e, quando necessário, descontinuar produtos. No dia a dia, mantém rituais de review de portfólio, monitora saúde comercial e de uso de cada produto e traduz movimentos de mercado em recomendações de alocação. É um papel muito conectado à estratégia corporativa, com forte uso de dados financeiros, de adoção e de posicionamento competitivo.",
+    salaryRange: {
+      min: 18000,
+      max: 26000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de Head aplicada a gestão de portfólio. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
