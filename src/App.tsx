@@ -144,7 +144,7 @@ function App() {
             cargo: result.topRoles[0]?.role.name || '',
             dataHora: new Date().toISOString()
           };
-          await fetch('http://localhost:5678/webhook-test/info-usuario', {
+          await fetch('https://rebuff-user-ability.ngrok-free.dev/webhook-test/info-usuario', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
