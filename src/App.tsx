@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Target, Sparkles, RefreshCcw, ArrowRight, BookOpen, Wrench } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb, Wrench } from 'lucide-react';
 import { roleContents } from './data/roleContent';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
@@ -486,7 +486,81 @@ function App() {
 
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                  {track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
+                  
+                  {content && (
+                    <>
+                      {/* Salário */}
+                      <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                          <DollarSign size={20} /> Faixa Salarial Base
+                        </h3>
+                        <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                              <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
+                                {content.salaryRange.currency} {content.salaryRange.min.toLocaleString('pt-BR')} - {content.salaryRange.max.toLocaleString('pt-BR')}{content.salaryRange.maxOpenEnded ? '+' : ''}
+                              </span>
+                              {content.salaryRange.panoramaAverage && (
+                                <div style={{ display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '16px' }}>
+                                  <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>
+                                    {content.salaryRange.panoramaAverageLabel || 'Média'}
+                                  </span>
+                                  <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#d8b4fe' }}>
+                                    {content.salaryRange.currency} {content.salaryRange.panoramaAverage.toLocaleString('pt-BR')}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            <span style={{ 
+                              fontSize: '0.75rem', 
+                              padding: '2px 8px', 
+                              borderRadius: '100px', 
+                              background: content.salaryConfidence === 'alta' ? 'rgba(34, 197, 94, 0.2)' : content.salaryConfidence === 'media' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                              color: content.salaryConfidence === 'alta' ? '#4ade80' : content.salaryConfidence === 'media' ? '#facc15' : '#f87171',
+                              border: `1px solid ${content.salaryConfidence === 'alta' ? 'rgba(34,197,94,0.3)' : content.salaryConfidence === 'media' ? 'rgba(234,179,8,0.3)' : 'rgba(239,68,68,0.3)'}`
+                            }}>
+                              Confiança {content.salaryConfidence.charAt(0).toUpperCase() + content.salaryConfidence.slice(1)}
+                            </span>
+                          </div>
+                          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
+                            Fonte: {content.salarySource} ({content.salaryRange.period})
+                          </p>
+                          {content.salaryRange.note && (
+                            <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', margin: 0, marginTop: '4px', fontStyle: 'italic' }}>
+                              {content.salaryRange.note}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Insights */}
+                      <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                          <Lightbulb size={20} /> Insights do Panorama 2024-2025
+                        </h3>
+                        {content.insights.length > 0 ? (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                            {content.insights.map((insight, i) => (
+                              <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                <h5 style={{ fontSize: '0.9rem', color: '#d8b4fe', margin: 0, marginBottom: '0.25rem' }}>{insight.title}</h5>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>{insight.value}</div>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, marginBottom: '0.5rem' }}>{insight.description}</p>
+                                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', margin: 0 }}>Fonte: {insight.source}</p>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
+                              Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  )}
+
+{track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
                     <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                       <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
                         <Target size={20} /> Trilha PM3 Recomendada
