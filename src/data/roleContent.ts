@@ -762,5 +762,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Power BI: análises avançadas" }
       ]
     }
+  },
+  "Product Design Manager": {
+    category: "Design",
+    tagline: "Gerencia a operação de Design de Produto, alinhando equipes, processos e entregas à estratégia.",
+    description: "O Product Design Manager gerencia a operação de Design de Produto, garantindo que equipes, processos e entregas estejam alinhados à estratégia da organização. Atua no desenvolvimento da equipe, definição de prioridades, contratação de talentos e evolução das práticas de design. Trabalha diretamente com líderes de Produto e Engenharia para equilibrar qualidade da experiência, velocidade de entrega e impacto no negócio. Além das competências técnicas em Design, exige habilidades de liderança, gestão de stakeholders e visão estratégica. Pode evoluir para Head of Design ou posições executivas de Design e Experiência.",
+    salaryRange: {
+      min: 14000,
+      max: 20000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de gestão aplicada a Design de produto. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Design",
+        value: "6.0%",
+        description: "6% dos respondentes vinham diretamente de Design antes de entrar em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 26"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Design", description: "Design de produto de ponta a ponta, do problema à interface." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de UI Design" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Design de Serviço" }
+      ]
+    }
   }
 };
