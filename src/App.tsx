@@ -374,7 +374,13 @@ function App() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
               {analysis.topRoles.map((match, idx) => {
                 const richContent = roleContents[match.role.name];
+                const categoryDefault = categoryDefaults[match.role.category];
                 const isExpanded = expandedRole === match.role.name;
+                
+                const track = richContent?.recommendedTrack || categoryDefault?.recommendedTrack;
+                const hardSkills = richContent?.hardSkills || categoryDefault?.hardSkills || [];
+                const softSkills = richContent?.softSkills || categoryDefault?.softSkills || [];
+                const nextSteps = (richContent?.nextSteps && richContent.nextSteps.length > 0) ? richContent.nextSteps : (categoryDefault?.nextSteps || []);
 
                 return (
                   <div key={match.role.id} style={{
@@ -384,10 +390,10 @@ function App() {
                     borderRadius: '16px',
                     position: 'relative',
                     overflow: 'hidden',
-                    cursor: richContent ? 'pointer' : 'default',
+                    cursor: 'pointer',
                     transition: 'all 0.3s ease'
                   }}
-                  onClick={() => richContent && toggleExpandedRole(match.role.name)}
+                  onClick={() => toggleExpandedRole(match.role.name)}
                   >
                     {idx === 0 && (
                       <div style={{
@@ -400,11 +406,9 @@ function App() {
                       <div style={{ flex: '1 1 auto', minWidth: '0' }}>
                         <h3 style={{ fontSize: 'clamp(1.1rem, 4.5vw, 1.3rem)', color: idx === 0 ? '#d8b4fe' : 'white', wordBreak: 'break-word', display: 'flex', alignItems: 'center', gap: '8px', margin: 0 }}>
                           {idx + 1}. {match.role.name}
-                          {richContent && (
-                            <span style={{ color: 'var(--text-secondary)', display: 'flex' }}>
-                              {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                            </span>
-                          )}
+                          <span style={{ color: 'var(--text-secondary)', display: 'flex' }}>
+                            {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                          </span>
                         </h3>
                         {richContent && (
                           <p style={{ fontSize: '0.85rem', color: 'var(--text-primary)', marginTop: '4px', marginBottom: 0, opacity: 0.9 }}>
@@ -420,7 +424,7 @@ function App() {
                     </p>
 
                     <AnimatePresence>
-                      {isExpanded && richContent && (
+                      {isExpanded && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: 'auto' }}
@@ -431,118 +435,179 @@ function App() {
                         >
                           <div style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             
-                            {/* Descrição */}
-                            <div>
-                              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                                <BookOpen size={18} color="#a855f7" /> Sobre a carreira
-                              </h4>
-                              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0, marginTop: '8px' }}>
-                                {richContent.description}
-                              </p>
-                            </div>
+                            {/* Conteúdo Específico do Cargo (se existir) */}
+                            {richContent && (
+                              <>
+                                {/* Descrição */}
+                                <div>
+                                  <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                    <BookOpen size={18} color="#a855f7" /> Sobre a carreira
+                                  </h4>
+                                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0, marginTop: '8px' }}>
+                                    {richContent.description}
+                                  </p>
+                                </div>
 
-                            {/* Salário */}
-                            <div>
-                              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                                <DollarSign size={18} color="#a855f7" /> Faixa Salarial Base
-                              </h4>
-                              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
-                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-                                    <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
-                                      {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}{richContent.salaryRange.maxOpenEnded ? '+' : ''}
-                                    </span>
-                                    {richContent.salaryRange.panoramaAverage && (
-                                      <div style={{ display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '16px' }}>
-                                        <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>
-                                          {richContent.salaryRange.panoramaAverageLabel || 'Média'}
+                                {/* Salário */}
+                                <div>
+                                  <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                    <DollarSign size={18} color="#a855f7" /> Faixa Salarial Base
+                                  </h4>
+                                  <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                                      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                                        <span style={{ fontSize: '1.2rem', fontWeight: 600, color: 'white' }}>
+                                          {richContent.salaryRange.currency} {richContent.salaryRange.min.toLocaleString('pt-BR')} - {richContent.salaryRange.max.toLocaleString('pt-BR')}{richContent.salaryRange.maxOpenEnded ? '+' : ''}
                                         </span>
-                                        <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#d8b4fe' }}>
-                                          {richContent.salaryRange.currency} {richContent.salaryRange.panoramaAverage.toLocaleString('pt-BR')}
-                                        </span>
+                                        {richContent.salaryRange.panoramaAverage && (
+                                          <div style={{ display: 'flex', flexDirection: 'column', borderLeft: '1px solid rgba(255,255,255,0.2)', paddingLeft: '16px' }}>
+                                            <span style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>
+                                              {richContent.salaryRange.panoramaAverageLabel || 'Média'}
+                                            </span>
+                                            <span style={{ fontSize: '1.05rem', fontWeight: 600, color: '#d8b4fe' }}>
+                                              {richContent.salaryRange.currency} {richContent.salaryRange.panoramaAverage.toLocaleString('pt-BR')}
+                                            </span>
+                                          </div>
+                                        )}
                                       </div>
+                                      <span style={{ 
+                                        fontSize: '0.75rem', 
+                                        padding: '2px 8px', 
+                                        borderRadius: '100px', 
+                                        background: richContent.salaryConfidence === 'alta' ? 'rgba(34, 197, 94, 0.2)' : richContent.salaryConfidence === 'media' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                                        color: richContent.salaryConfidence === 'alta' ? '#4ade80' : richContent.salaryConfidence === 'media' ? '#facc15' : '#f87171',
+                                        border: `1px solid ${richContent.salaryConfidence === 'alta' ? 'rgba(34,197,94,0.3)' : richContent.salaryConfidence === 'media' ? 'rgba(234,179,8,0.3)' : 'rgba(239,68,68,0.3)'}`
+                                      }}>
+                                        Confiança {richContent.salaryConfidence.charAt(0).toUpperCase() + richContent.salaryConfidence.slice(1)}
+                                      </span>
+                                    </div>
+                                    <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
+                                      Fonte: {richContent.salarySource} ({richContent.salaryRange.period})
+                                    </p>
+                                    {richContent.salaryRange.note && (
+                                      <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', margin: 0, marginTop: '4px', fontStyle: 'italic' }}>
+                                        {richContent.salaryRange.note}
+                                      </p>
                                     )}
                                   </div>
-                                  <span style={{ 
-                                    fontSize: '0.75rem', 
-                                    padding: '2px 8px', 
-                                    borderRadius: '100px', 
-                                    background: richContent.salaryConfidence === 'alta' ? 'rgba(34, 197, 94, 0.2)' : richContent.salaryConfidence === 'media' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(239, 68, 68, 0.2)',
-                                    color: richContent.salaryConfidence === 'alta' ? '#4ade80' : richContent.salaryConfidence === 'media' ? '#facc15' : '#f87171',
-                                    border: `1px solid ${richContent.salaryConfidence === 'alta' ? 'rgba(34,197,94,0.3)' : richContent.salaryConfidence === 'media' ? 'rgba(234,179,8,0.3)' : 'rgba(239,68,68,0.3)'}`
-                                  }}>
-                                    Confiança {richContent.salaryConfidence.charAt(0).toUpperCase() + richContent.salaryConfidence.slice(1)}
-                                  </span>
                                 </div>
-                                <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)', margin: 0 }}>
-                                  Fonte: {richContent.salarySource} ({richContent.salaryRange.period})
-                                </p>
-                                {richContent.salaryRange.note && (
-                                  <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.3)', margin: 0, marginTop: '4px', fontStyle: 'italic' }}>
-                                    {richContent.salaryRange.note}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
 
-                            {/* Insights */}
-                            <div>
-                              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                                <Lightbulb size={18} color="#a855f7" /> Insights do Panorama 2024-2025
-                              </h4>
-                              {richContent.insights.length > 0 ? (
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '8px' }}>
-                                  {richContent.insights.map((insight, i) => (
-                                    <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                                      <h5 style={{ fontSize: '0.9rem', color: '#d8b4fe', margin: 0, marginBottom: '0.25rem' }}>{insight.title}</h5>
-                                      <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>{insight.value}</div>
-                                      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, marginBottom: '0.5rem' }}>{insight.description}</p>
-                                      <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', margin: 0 }}>Fonte: {insight.source}</p>
+                                {/* Insights */}
+                                <div>
+                                  <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                    <Lightbulb size={18} color="#a855f7" /> Insights do Panorama 2024-2025
+                                  </h4>
+                                  {richContent.insights.length > 0 ? (
+                                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', marginTop: '8px' }}>
+                                      {richContent.insights.map((insight, i) => (
+                                        <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                          <h5 style={{ fontSize: '0.9rem', color: '#d8b4fe', margin: 0, marginBottom: '0.25rem' }}>{insight.title}</h5>
+                                          <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>{insight.value}</div>
+                                          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, marginBottom: '0.5rem' }}>{insight.description}</p>
+                                          <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', margin: 0 }}>Fonte: {insight.source}</p>
+                                        </div>
+                                      ))}
                                     </div>
+                                  ) : (
+                                    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
+                                      <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
+                                        Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
+                              </>
+                            )}
+
+                            {/* Trilha (Fallback ou Específico) */}
+                            {track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
+                              <div>
+                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                  <Target size={18} color="#a855f7" /> Trilha Recomendada PM3
+                                </h4>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '8px' }}>
+                                  {track.formacoes.length > 0 && (
+                                    <div>
+                                      <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Formações</h5>
+                                      <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        {track.formacoes.map((formacao, i) => (
+                                          <li key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
+                                            <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'white' }}>{formacao.title}</div>
+                                            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                  )}
+                                  {track.sprints.length > 0 && (
+                                    <div>
+                                      <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Sprints</h5>
+                                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                        {track.sprints.map((sprint, i) => (
+                                          <span key={i} style={{ fontSize: '0.8rem', padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '100px', color: '#d8b4fe' }}>
+                                            {sprint.title}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Skills (Fallback ou Específico) */}
+                            {(hardSkills.length > 0 || softSkills.length > 0) && (
+                              <div>
+                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                  <Wrench size={18} color="#a855f7" /> Habilidades para Desenvolver
+                                </h4>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '8px' }}>
+                                  {hardSkills.length > 0 && (
+                                    <div>
+                                      <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Hard Skills</h5>
+                                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                        {hardSkills.map((skill, i) => (
+                                          <span key={i} style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#93c5fd', border: '1px solid rgba(59, 130, 246, 0.3)', padding: '4px 10px', borderRadius: '100px', fontSize: '0.8rem' }}>
+                                            {skill}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                  {softSkills.length > 0 && (
+                                    <div>
+                                      <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Soft Skills</h5>
+                                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                        {softSkills.map((skill, i) => (
+                                          <span key={i} style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '4px 10px', borderRadius: '100px', fontSize: '0.8rem' }}>
+                                            {skill}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Próximos Passos (Fallback ou Específico) */}
+                            {nextSteps.length > 0 && (
+                              <div>
+                                <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
+                                  <Sparkles size={18} color="#a855f7" /> Próximos Passos
+                                </h4>
+                                <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                  {nextSteps.map((step, i) => (
+                                    <li key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                                      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '50%', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', fontSize: '0.75rem', fontWeight: 600, flexShrink: 0, marginTop: '2px' }}>
+                                        {i + 1}
+                                      </span>
+                                      <span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5' }}>{step}</span>
+                                    </li>
                                   ))}
-                                </div>
-                              ) : (
-                                <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)', marginTop: '8px' }}>
-                                  <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
-                                    Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
-                                  </p>
-                                </div>
-                              )}
-                            </div>
-
-                            {/* Trilha */}
-                            <div>
-                              <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                                <Target size={18} color="#a855f7" /> Trilha Recomendada PM3
-                              </h4>
-                              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '8px' }}>
-                                {richContent.recommendedTrack.formacoes.length > 0 && (
-                                  <div>
-                                    <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Formações</h5>
-                                    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                                      {richContent.recommendedTrack.formacoes.map((formacao, i) => (
-                                        <li key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '0.75rem 1rem', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                                          <div style={{ fontWeight: 600, fontSize: '0.9rem', color: 'white' }}>{formacao.title}</div>
-                                          <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                                {richContent.recommendedTrack.sprints.length > 0 && (
-                                  <div>
-                                    <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', margin: 0, marginBottom: '0.5rem' }}>Sprints</h5>
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                                      {richContent.recommendedTrack.sprints.map((sprint, i) => (
-                                        <span key={i} style={{ fontSize: '0.8rem', padding: '4px 10px', background: 'rgba(255,255,255,0.05)', borderRadius: '100px', color: '#d8b4fe' }}>
-                                          {sprint.title}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
+                                </ul>
                               </div>
-                            </div>
+                            )}
 
                           </div>
                         </motion.div>
