@@ -909,5 +909,45 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Manager": {
+    category: "Produto",
+    tagline: "Identifica problemas relevantes, define prioridades e lidera a evolução de produtos digitais.",
+    description: "O Product Manager é responsável por identificar problemas relevantes, definir prioridades e liderar a evolução de produtos digitais que gerem valor para usuários e para o negócio. Atua conectando estratégia, tecnologia, design e dados, coordenando equipes multidisciplinares ao longo de todo o ciclo de desenvolvimento. Seu trabalho envolve discovery, definição de roadmap, priorização, análise de métricas e alinhamento entre stakeholders. É uma função altamente generalista que exige visão sistêmica, comunicação, capacidade analítica e tomada de decisão. A evolução da carreira normalmente segue para Senior Product Manager, Group Product Manager, Head de Produto ou cargos executivos.",
+    salaryRange: {
+      min: 12000,
+      max: 18000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 14382,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Product Manager no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      },
+      {
+        title: "Entrada direta em Produto",
+        value: "4.9%",
+        description: "5% entraram direto em Produto, sem passagem por outra área antes.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 28"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
