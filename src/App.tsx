@@ -448,7 +448,7 @@ function App() {
             style={{ width: '100%', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}
           >
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '0 0 1rem 0' }}>Plano de Ação</h2>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '0 0 1rem 0' }}>Informações do Cargo</h2>
               <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto' }}>
                 Seu próximo passo prático para migrar para <strong>{analysis.topRoles[selectedRoleIndex].role.name}</strong>.
               </p>
@@ -479,16 +479,73 @@ function App() {
                 nextSteps: ["Pesquisar mais sobre a área."]
               };
               const track = content?.recommendedTrack || categoryDefault.recommendedTrack;
-              const reading = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading[0] : categoryDefault.reading;
+              const readings = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading : categoryDefault.reading;
               const nextSteps = content?.nextSteps && content.nextSteps.length > 0 ? content.nextSteps : categoryDefault.nextSteps;
               const hardSkills = content?.hardSkills || categoryDefault.hardSkills || [];
               const softSkills = content?.softSkills || categoryDefault.softSkills || [];
 
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                  
+                  {track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
+                    <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                      <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                        <Target size={20} /> Trilha PM3 Recomendada
+                      </h3>
+                      {track.formacoes.length > 0 && (
+                        <div style={{ marginBottom: '1rem' }}>
+                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Formações</h4>
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {track.formacoes.map((formacao, i) => (
+                              <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
+                                <div style={{ fontWeight: 600, color: 'white' }}>{formacao.title}</div>
+                                <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {track.sprints.length > 0 && (
+                        <div>
+                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Sprints</h4>
+                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                            {track.sprints.map((sprint, i) => (
+                              <span key={i} style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#d8b4fe', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                {sprint.title}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {content && (
                     <>
+                      {/* Insights */}
+                      <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                          <Lightbulb size={20} /> Insights do Panorama 2024-2025
+                        </h3>
+                        {content.insights.length > 0 ? (
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
+                            {content.insights.map((insight, i) => (
+                              <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                                <h5 style={{ fontSize: '0.9rem', color: '#d8b4fe', margin: 0, marginBottom: '0.25rem' }}>{insight.title}</h5>
+                                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>{insight.value}</div>
+                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, marginBottom: '0.5rem' }}>{insight.description}</p>
+                                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', margin: 0 }}>Fonte: {insight.source}</p>
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
+                              Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
                       {/* Salário */}
                       <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                         <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
@@ -532,85 +589,33 @@ function App() {
                           )}
                         </div>
                       </div>
-
-                      {/* Insights */}
-                      <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-                        <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
-                          <Lightbulb size={20} /> Insights do Panorama 2024-2025
-                        </h3>
-                        {content.insights.length > 0 ? (
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem' }}>
-                            {content.insights.map((insight, i) => (
-                              <div key={i} style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                                <h5 style={{ fontSize: '0.9rem', color: '#d8b4fe', margin: 0, marginBottom: '0.25rem' }}>{insight.title}</h5>
-                                <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>{insight.value}</div>
-                                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.5', margin: 0, marginBottom: '0.5rem' }}>{insight.description}</p>
-                                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.3)', margin: 0 }}>Fonte: {insight.source}</p>
-                              </div>
-                            ))}
-                          </div>
-                        ) : (
-                          <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <p style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', fontStyle: 'italic', margin: 0 }}>
-                              Sem indicador específico para esta carreira nos dados carregados. Veja a página de mercado para o quadro geral.
-                            </p>
-                          </div>
-                        )}
-                      </div>
                     </>
                   )}
 
-{track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
+                  {readings && readings.length > 0 && (
                     <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                       <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
-                        <Target size={20} /> Trilha PM3 Recomendada
+                        <BookOpen size={20} /> Leitura Recomendada
                       </h3>
-                      {track.formacoes.length > 0 && (
-                        <div style={{ marginBottom: '1rem' }}>
-                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Formações</h4>
-                          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            {track.formacoes.map((formacao, i) => (
-                              <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                                <div style={{ fontWeight: 600, color: 'white' }}>{formacao.title}</div>
-                                <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {track.sprints.length > 0 && (
-                        <div>
-                          <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Sprints</h4>
-                          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                            {track.sprints.map((sprint, i) => (
-                              <span key={i} style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#d8b4fe', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
-                                {sprint.title}
-                              </span>
-                            ))}
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {readings.map((reading, i) => (
+                          <div key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                            <div style={{ fontWeight: 600, color: 'white', fontSize: '1.1rem', marginBottom: '2px' }}>
+                              {reading.link ? (
+                                <a href={reading.link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }} onMouseOver={(e) => e.currentTarget.style.color = '#d8b4fe'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
+                                  {reading.title} <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>↗</span>
+                                </a>
+                              ) : (
+                                reading.title
+                              )}
+                            </div>
+                            <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>por {reading.author}</div>
+                            <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{reading.description}</p>
                           </div>
-                        </div>
-                      )}
+                        ))}
+                      </div>
                     </div>
                   )}
-
-                  <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
-                      <BookOpen size={20} /> Leitura Recomendada
-                    </h3>
-                    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                      <div style={{ fontWeight: 600, color: 'white', fontSize: '1.1rem', marginBottom: '2px' }}>
-                        {reading.link ? (
-                          <a href={reading.link} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }} onMouseOver={(e) => e.currentTarget.style.color = '#d8b4fe'} onMouseOut={(e) => e.currentTarget.style.color = 'inherit'}>
-                            {reading.title} <span style={{ fontSize: '0.8rem', opacity: 0.8 }}>↗</span>
-                          </a>
-                        ) : (
-                          reading.title
-                        )}
-                      </div>
-                      <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: '8px' }}>por {reading.author}</div>
-                      <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{reading.description}</p>
-                    </div>
-                  </div>
 
                   {(hardSkills.length > 0 || softSkills.length > 0) && (
                     <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
@@ -620,10 +625,10 @@ function App() {
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {hardSkills.length > 0 && (
                           <div>
-                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Hard Skills</h4>
+                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Hard Skills</h4>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                               {hardSkills.map((skill, i) => (
-                                <span key={i} style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#93c5fd', border: '1px solid rgba(59, 130, 246, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                <span key={i} style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#93c5fd', border: '1px solid rgba(59, 130, 246, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.9rem' }}>
                                   {skill}
                                 </span>
                               ))}
@@ -632,10 +637,10 @@ function App() {
                         )}
                         {softSkills.length > 0 && (
                           <div>
-                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Soft Skills</h4>
+                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>Soft Skills</h4>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                               {softSkills.map((skill, i) => (
-                                <span key={i} style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                <span key={i} style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.9rem' }}>
                                   {skill}
                                 </span>
                               ))}
@@ -646,21 +651,23 @@ function App() {
                     </div>
                   )}
 
-                  <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
-                    <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
-                      <Sparkles size={20} /> Próximos Passos
-                    </h3>
-                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                      {nextSteps.map((step, i) => (
-                        <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
-                          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', fontSize: '0.8rem', fontWeight: 600, flexShrink: 0 }}>
-                            {i + 1}
-                          </span>
-                          <span style={{ color: 'white', lineHeight: '1.5', marginTop: '2px' }}>{step}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {nextSteps.length > 0 && (
+                    <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
+                      <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                        <Sparkles size={20} /> Próximos Passos
+                      </h3>
+                      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {nextSteps.map((step, i) => (
+                          <li key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', fontSize: '0.8rem', fontWeight: 600, flexShrink: 0 }}>
+                              {i + 1}
+                            </span>
+                            <span style={{ color: 'white', lineHeight: '1.5', marginTop: '2px' }}>{step}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
               );
             })()}
