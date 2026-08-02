@@ -871,5 +871,43 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Métricas de Negócios Digitais" }
       ]
     }
+  },
+  "Product Insights Manager": {
+    category: "Insights",
+    tagline: "Lidera a geração de conhecimento estratégico sobre clientes, mercado e comportamento.",
+    description: "O Product Insights Manager lidera a geração de conhecimento estratégico sobre clientes, mercado e comportamento dos usuários. Coordena análises quantitativas e qualitativas para apoiar decisões de Produto, identificando oportunidades, tendências e riscos. Atua como referência na transformação de dados em recomendações para lideranças e equipes multidisciplinares. Além de domínio analítico, precisa comunicar descobertas de forma clara e influenciar decisões estratégicas. A função combina pesquisa, analytics e visão de negócio, podendo evoluir para Product Strategy Manager, Head of Insights ou posições executivas ligadas à inteligência de mercado.",
+    salaryRange: {
+      min: 14000,
+      max: 20000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado das faixas de gestão em Analytics/Research. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para análise de dados",
+        value: "4.8/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para análise de dados.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 56"
+      },
+      {
+        title: "Origem profissional: Dados",
+        value: "3.1%",
+        description: "3% vinham de Dados antes de atuarem em Produto — origem forte em perfis analíticos.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 30"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
