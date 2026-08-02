@@ -332,5 +332,43 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Experimentation Manager": {
+    category: "Dados",
+    tagline: "Lidera a cultura de experimentação estruturando processos para validar hipóteses.",
+    description: "O Experimentation Manager lidera a cultura de experimentação dentro da empresa, estruturando processos para validar hipóteses com rapidez e reduzir riscos nas decisões de Produto. Coordena testes A/B, experimentos controlados e análises estatísticas para medir impacto em métricas de negócio e comportamento dos usuários. Atua em parceria com Produto, Growth, Dados e Engenharia para garantir que decisões sejam baseadas em evidências. A função exige conhecimento em metodologia científica, estatística e análise de dados. Pode evoluir para posições de Growth Leadership, Product Strategy ou Analytics Leadership.",
+    salaryRange: {
+      min: 12000,
+      max: 18000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de PMs sêniores com foco em experimentação. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para análise de dados",
+        value: "4.8/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para análise de dados.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 56"
+      },
+      {
+        title: "Origem profissional: Dados",
+        value: "3.1%",
+        description: "3% vinham de Dados antes de atuarem em Produto — origem forte em perfis analíticos.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 30"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Growth", description: "Aquisição, ativação, retenção e monetização." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Estratégia de Aquisição de clientes" },
+        { title: "Curso de Experimentação com Teste A/B" },
+        { title: "Curso de Métricas de Negócios Digitais" }
+      ]
+    }
   }
 };
