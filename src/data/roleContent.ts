@@ -25,6 +25,7 @@ export interface RoleContent {
     sprints: Array<{ title: string; link?: string }>;
   };
   recommendedReading?: Array<{ title: string; author: string; description: string; link?: string }>;
+  externalCourses?: Array<{ title: string; provider: string; description: string; link?: string }>;
   nextSteps?: Array<string>;
   hardSkills?: Array<string>;
   softSkills?: Array<string>;

@@ -9,6 +9,7 @@ export interface CategoryDefault {
     formacoes: Array<{ title: string; description: string; link?: string }>;
     sprints: Array<{ title: string; link?: string }>;
   };
+  externalCourses?: Array<{ title: string; provider: string; description: string; link?: string }>;
   nextSteps: string[];
   hardSkills?: Array<string>;
   softSkills?: Array<string>;
@@ -82,7 +83,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: dadosTrack,
     nextSteps: ["Aprenda o básico de SQL pra consultar dados direto na fonte", "Monte um dashboard pessoal com um dataset público", "Pratique contar uma 'história' a partir de um conjunto de dados"],
     hardSkills: ["SQL", "Planilhas avançadas (Excel/Google Sheets)", "Estatística básica", "Ferramentas de BI (Power BI, Looker, Tableau)", "Python básico para análise de dados"],
-    softSkills: ["Storytelling com dados", "Pensamento crítico", "Comunicação de insights para não-técnicos"]
+    softSkills: ["Storytelling com dados", "Pensamento crítico", "Comunicação de insights para não-técnicos"],
+    externalCourses: [{ title: "Google Data Analytics Professional Certificate", provider: "Coursera / Google", description: "Certificado de entrada mais reconhecido do mercado para análise e comunicação de dados.", link: "https://www.coursera.org/professional-certificates/google-data-analytics" }],
   },
   "Design": {
     reading: [
@@ -92,7 +94,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: designTrack,
     nextSteps: ["Rode um teste de usabilidade informal com 3 pessoas", "Estude a fundo um design system conhecido (ex: Material Design)", "Pratique wireframes rápidos de baixa fidelidade"],
     hardSkills: ["Figma", "Design Systems", "Prototipação", "Testes de usabilidade"],
-    softSkills: ["Empatia com o usuário", "Comunicação visual", "Colaboração com Produto e Engenharia"]
+    softSkills: ["Empatia com o usuário", "Comunicação visual", "Colaboração com Produto e Engenharia"],
+    externalCourses: [{ title: "Google UX Design Professional Certificate", provider: "Coursera / Google", description: "Certificado reconhecido no mercado, cobrindo todo o processo de UX do zero ao portfólio.", link: "https://www.coursera.org/professional-certificates/google-ux-design" }],
   },
   "Pesquisa": {
     reading: [
@@ -102,7 +105,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: pesquisaTrack,
     nextSteps: ["Conduza 3 entrevistas de descoberta com usuários reais", "Aprenda a escrever roteiros de entrevista sem viés", "Estude o método de affinity mapping pra sintetizar aprendizados"],
     hardSkills: ["Métodos de pesquisa qualitativa e quantitativa", "Roteiros de entrevista", "Síntese de dados (affinity mapping)"],
-    softSkills: ["Escuta ativa", "Neutralidade e isenção de viés", "Curiosidade genuína"]
+    softSkills: ["Escuta ativa", "Neutralidade e isenção de viés", "Curiosidade genuína"],
+    externalCourses: [{ title: "User Research – Methods and Best Practices", provider: "Interaction Design Foundation", description: "Curso completo sobre métodos de pesquisa com usuários, com mais de 1 milhão de inscritos.", link: "https://www.interaction-design.org" }],
   },
   "Insights": {
     reading: [
@@ -112,7 +116,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: dadosTrack,
     nextSteps: ["Pratique segmentar usuários usando um dataset público", "Aprenda o básico de uma ferramenta de BI (ex: Power BI ou Looker Studio)", "Estude como transformar dado qualitativo em recomendação acionável"],
     hardSkills: ["Segmentação de clientes", "Ferramentas de BI", "Análise de jornada do cliente"],
-    softSkills: ["Tradução de dado em recomendação acionável", "Comunicação executiva"]
+    softSkills: ["Tradução de dado em recomendação acionável", "Comunicação executiva"],
+    externalCourses: [{ title: "Google Data Analytics Professional Certificate", provider: "Coursera / Google", description: "Certificado de entrada mais reconhecido do mercado para análise e comunicação de dados.", link: "https://www.coursera.org/professional-certificates/google-data-analytics" }],
   },
   "Engenharia": {
     reading: [
@@ -122,7 +127,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Contribua com um projeto open source", "Estude fundamentos de arquitetura de sistemas escaláveis", "Pratique mentoria técnica informal com alguém mais júnior"],
     hardSkills: ["Arquitetura de sistemas", "Boas práticas de código e revisão", "Metodologias ágeis (Scrum/Kanban)"],
-    softSkills: ["Mentoria técnica", "Comunicação com áreas não técnicas", "Gestão de conflitos"]
+    softSkills: ["Mentoria técnica", "Comunicação com áreas não técnicas", "Gestão de conflitos"],
+    externalCourses: [{ title: "Engineering Leadership", provider: "LeadDev / Reforge", description: "Programas focados em liderança técnica, gestão de pessoas e estratégia de engenharia.", link: "https://leaddev.com" }],
   },
   "Programa": {
     reading: [
@@ -132,7 +138,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Mapeie um processo do zero, do início ao fim", "Pratique priorização com frameworks como RICE ou ICE", "Estude como times multi-squad se coordenam em empresas maiores"],
     hardSkills: ["Priorização (RICE, ICE)", "Ferramentas de gestão (Jira, Linear)", "Mapeamento de processos"],
-    softSkills: ["Organização", "Facilitação de reuniões", "Alinhamento entre múltiplos times"]
+    softSkills: ["Organização", "Facilitação de reuniões", "Alinhamento entre múltiplos times"],
+    externalCourses: [{ title: "Engineering Leadership", provider: "LeadDev / Reforge", description: "Programas focados em liderança técnica, gestão de pessoas e estratégia de engenharia.", link: "https://leaddev.com" }],
   },
   "Operações": {
     reading: [
@@ -142,7 +149,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Mapeie um processo do zero, do início ao fim", "Pratique priorização com frameworks como RICE ou ICE", "Estude ferramentas de gestão de projeto (Jira, Linear, Notion)"],
     hardSkills: ["Priorização (RICE, ICE)", "Ferramentas de gestão (Jira, Linear, Notion)", "Mapeamento de processos"],
-    softSkills: ["Organização", "Facilitação de reuniões", "Alinhamento entre múltiplos times"]
+    softSkills: ["Organização", "Facilitação de reuniões", "Alinhamento entre múltiplos times"],
+    externalCourses: [{ title: "Engineering Leadership", provider: "LeadDev / Reforge", description: "Programas focados em liderança técnica, gestão de pessoas e estratégia de engenharia.", link: "https://leaddev.com" }],
   },
   "IA": {
     reading: [
@@ -152,7 +160,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Faça um curso introdutório de fundamentos de IA/ML", "Teste na prática prompts com diferentes modelos de linguagem", "Monte um protótipo simples usando uma API de IA (ex: OpenAI, Anthropic)"],
     hardSkills: ["Fundamentos de IA/Machine Learning", "Prompt engineering", "Avaliação de modelos e limitações", "Integração com APIs de IA"],
-    softSkills: ["Pensamento crítico sobre limitações da tecnologia", "Comunicação de trade-offs técnicos pra stakeholders"]
+    softSkills: ["Pensamento crítico sobre limitações da tecnologia", "Comunicação de trade-offs técnicos pra stakeholders"],
+    externalCourses: [{ title: "Artificial Intelligence for Product Managers", provider: "Reforge", description: "Curso com instrutores que já lançaram produtos de IA em escala, focado em decisões reais de PM (seleção de modelo, avaliação, custo x qualidade).", link: "https://www.reforge.com" }],
   },
   "Growth": {
     reading: [
@@ -162,7 +171,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: growthTrack,
     nextSteps: ["Rode um teste A/B simples (mesmo que um 'fake door test')", "Estude o funil de ativação de 2-3 produtos que você usa no dia a dia", "Aprenda métricas essenciais de growth (D1/D7/D30, LTV, churn)"],
     hardSkills: ["Testes A/B", "Métricas de growth (funil, retenção, LTV)", "Ferramentas de analytics"],
-    softSkills: ["Criatividade experimental", "Tolerância a falhas rápidas (fail fast)"]
+    softSkills: ["Criatividade experimental", "Tolerância a falhas rápidas (fail fast)"],
+    externalCourses: [{ title: "Growth Marketing", provider: "Reforge", description: "Programa cohort-based considerado referência para profissionais de growth experientes.", link: "https://www.reforge.com" }],
   },
   "Produto": {
     reading: [
@@ -172,7 +182,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Escreva um PRD de uma feature fictícia do zero", "Pratique priorização de um backlog simulado", "Busque sombrear um PM sênior por um dia, se possível"],
     hardSkills: ["Escrita de PRD", "Priorização de backlog", "Métricas de produto"],
-    softSkills: ["Comunicação com stakeholders", "Tomada de decisão sob incerteza"]
+    softSkills: ["Comunicação com stakeholders", "Tomada de decisão sob incerteza"],
+    externalCourses: [{ title: "Product Management Certification (PMC)", provider: "Product School", description: "Certificação com aulas ao vivo cobrindo o ciclo completo de produto, com portfólio avaliado por instrutores.", link: "https://productschool.com/product-management-certification" }],
   },
   "Estratégia": {
     reading: [
@@ -182,7 +193,8 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Escreva uma visão de produto de 1 página pra um produto que você usa", "Estude a análise competitiva de um mercado que te interessa", "Pratique conectar uma decisão pequena a um objetivo maior de negócio"],
     hardSkills: ["Análise competitiva", "Modelagem de mercado", "Construção de visão de produto"],
-    softSkills: ["Pensamento sistêmico", "Influência sem autoridade direta"]
+    softSkills: ["Pensamento sistêmico", "Influência sem autoridade direta"],
+    externalCourses: [{ title: "Product Strategy", provider: "Reforge", description: "Programa avançado (cohort) focado em estratégia de produto para profissionais sêniores.", link: "https://www.reforge.com" }],
   },
   "Liderança": {
     reading: [
@@ -192,6 +204,7 @@ export const categoryDefaults: Record<string, CategoryDefault> = {
     recommendedTrack: produtoTrack,
     nextSteps: ["Busque uma oportunidade de mentoria informal (dar ou receber)", "Pratique dar feedback estruturado a um colega", "Estude como grandes empresas estruturam a carreira de liderança de produto"],
     hardSkills: ["Gestão de performance", "Processos de contratação", "Definição de OKRs"],
-    softSkills: ["Feedback estruturado", "Empatia", "Gestão de conflitos", "Delegação"]
+    softSkills: ["Feedback estruturado", "Empatia", "Gestão de conflitos", "Delegação"],
+    externalCourses: [{ title: "Product Leadership", provider: "Reforge", description: "Programa para quem está migrando pra gestão de times e cultura de produto em nível executivo.", link: "https://www.reforge.com" }],
   }
 };
