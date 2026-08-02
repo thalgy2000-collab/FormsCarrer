@@ -684,5 +684,43 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Power BI: análises avançadas" }
       ]
     }
+  },
+  "Product Analytics Manager": {
+    category: "Dados",
+    tagline: "Lidera a estratégia de análise de dados aplicada aos produtos digitais.",
+    description: "O Product Analytics Manager lidera a estratégia de análise de dados aplicada aos produtos digitais. Define indicadores, estrutura processos de mensuração, acompanha experimentos e garante que decisões importantes sejam sustentadas por evidências. Trabalha em parceria com Product Managers, Engenharia, Growth e lideranças executivas para identificar oportunidades de crescimento e otimização. Além do domínio técnico em analytics e métricas, exige capacidade de liderança e visão estratégica. Com o aumento da cultura data-driven nas empresas, tornou-se uma função cada vez mais relevante, podendo evoluir para Head of Analytics, Director of Data ou Chief Data Officer.",
+    salaryRange: {
+      min: 14000,
+      max: 20000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado de gestão de dados aplicada a produto. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para análise de dados",
+        value: "4.8/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para análise de dados.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 56"
+      },
+      {
+        title: "Origem profissional: Dados",
+        value: "3.1%",
+        description: "3% vinham de Dados antes de atuarem em Produto — origem forte em perfis analíticos.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 30"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Analytics", description: "Métricas, análise e experimentação orientadas a dados." },
+        { title: "Formação Analista de Dados", description: "Da coleta à análise que sustenta decisões de negócio." }
+      ],
+      sprints: [
+        { title: "Curso de Métodos de Análise de Dados" },
+        { title: "Curso de SQL para Manipulação e Análise de Dados" },
+        { title: "Curso de Power BI: análises avançadas" }
+      ]
+    }
   }
 };
