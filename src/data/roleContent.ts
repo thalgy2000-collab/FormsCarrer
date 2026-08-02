@@ -26,6 +26,8 @@ export interface RoleContent {
   };
   recommendedReading?: Array<{ title: string; author: string; description: string; link?: string }>;
   nextSteps?: Array<string>;
+  hardSkills?: Array<string>;
+  softSkills?: Array<string>;
 }
 
 export const roleContents: Record<string, RoleContent> = {

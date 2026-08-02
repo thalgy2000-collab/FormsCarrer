@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, ChevronDown, ChevronUp, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ChevronDown, ChevronUp, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb, Wrench } from 'lucide-react';
 import { roleContents } from './data/roleContent';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
@@ -594,6 +594,8 @@ function App() {
               const track = content?.recommendedTrack || categoryDefault.recommendedTrack;
               const reading = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading[0] : categoryDefault.reading;
               const nextSteps = content?.nextSteps && content.nextSteps.length > 0 ? content.nextSteps : categoryDefault.nextSteps;
+              const hardSkills = content?.hardSkills || categoryDefault.hardSkills || [];
+              const softSkills = content?.softSkills || categoryDefault.softSkills || [];
 
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -648,6 +650,40 @@ function App() {
                       <p style={{ margin: 0, fontSize: '0.95rem', color: 'rgba(255,255,255,0.8)' }}>{reading.description}</p>
                     </div>
                   </div>
+
+                  {(hardSkills.length > 0 || softSkills.length > 0) && (
+                    <div className="glass-panel">
+                      <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
+                        <Wrench size={20} /> Habilidades para Desenvolver
+                      </h3>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {hardSkills.length > 0 && (
+                          <div>
+                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Hard Skills</h4>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                              {hardSkills.map((skill, i) => (
+                                <span key={i} style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#93c5fd', border: '1px solid rgba(59, 130, 246, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {softSkills.length > 0 && (
+                          <div>
+                            <h4 style={{ fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>Soft Skills</h4>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                              {softSkills.map((skill, i) => (
+                                <span key={i} style={{ background: 'rgba(16, 185, 129, 0.15)', color: '#6ee7b7', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
 
                   <div className="glass-panel">
                     <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
