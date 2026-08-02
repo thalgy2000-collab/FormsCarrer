@@ -1,4 +1,4 @@
-import type { MatchResult, Role, UserScores } from '../types';
+import type { MatchResult, Role, UserScores, Category } from '../types';
 import { mockQuestions } from '../data/questions';
 
 const MAX_DISTANCE = Math.sqrt(100 + 100); // 14.14, assuming 10x10 grid
@@ -10,12 +10,11 @@ export interface AnalysisResult {
   dominantPattern: string;
 }
 
-export function analyzeUser(
-  userScores: UserScores,
-  roles: Role[]
-): AnalysisResult {
-  // 1. Calculate the max possible points per category by iterating through all questions
-  //    and finding the highest category score available in any of its options.
+/**
+ * Calcula o teto (pontuação máxima possível) para cada categoria,
+ * iterando sobre todas as perguntas e pegando a maior pontuação disponível para a categoria.
+ */
+export function calculateCategoryMaxPossible(): Record<string, number> {
   const categoryMaxPossible: Record<string, number> = {};
   
   mockQuestions.forEach(q => {
@@ -36,6 +35,33 @@ export function analyzeUser(
     });
   });
 
+  return categoryMaxPossible;
+}
+
+export function analyzeUser(
+  userScores: UserScores,
+  roles: Role[]
+): AnalysisResult {
+  // 1. Calcular o teto de cada categoria
+  const categoryMaxPossible = calculateCategoryMaxPossible();
+
+  // 2. Calcular a afinidade normalizada de TODAS as categorias e ordená-las
+  const categoryAffinities = Object.keys(userScores.categories).map(c => {
+    const cat = c as Category;
+    const rawScore = userScores.categories[cat] || 0;
+    const maxPossible = categoryMaxPossible[cat] || 1; // fallback to 1 to avoid div/0
+    const affinity = Math.max(0, Math.min(1, rawScore / maxPossible));
+    return { category: cat, affinity };
+  });
+
+  // Ordena por maior afinidade normalizada
+  categoryAffinities.sort((a, b) => b.affinity - a.affinity);
+
+  // A categoria dominante passa a ser a com maior afinidade normalizada,
+  // e a secundária a segunda maior.
+  const dominantCategory = categoryAffinities[0]?.category || 'Produto';
+  const secondaryCategory = categoryAffinities.length > 1 ? categoryAffinities[1].category : '';
+
   // Clamp user coordinates to the 0-10 scale defined by the matrix
   const userX = Math.max(0, Math.min(10, userScores.axis.x));
   const userY = Math.max(0, Math.min(10, userScores.axis.y));
@@ -47,10 +73,9 @@ export function analyzeUser(
     const distance = Math.sqrt(dx * dx + dy * dy);
     const normalizedDistance = Math.min(1, distance / MAX_DISTANCE);
 
-    // 2. Calculate Normalized Category Affinity (scale 0 a 1) based on max possible
-    const rawCategoryScore = userScores.categories[role.category] || 0;
-    const maxPossibleForCategory = categoryMaxPossible[role.category] || 1; // fallback to 1 to avoid div/0
-    const normalizedAffinity = Math.max(0, Math.min(1, rawCategoryScore / maxPossibleForCategory));
+    // 2. Reutilizar a afinidade normalizada já calculada para esta categoria
+    const roleAffinityObj = categoryAffinities.find(c => c.category === role.category);
+    const normalizedAffinity = roleAffinityObj ? roleAffinityObj.affinity : 0;
 
     // 3. Apply the custom formula: score_cargo = 0.5 * afinidade - 0.5 * distancia
     const finalScore = (0.5 * normalizedAffinity) - (0.5 * normalizedDistance);
@@ -77,31 +102,6 @@ export function analyzeUser(
   // Sort by highest score descending
   results.sort((a, b) => b.score - a.score);
   const topRoles = results.slice(0, 3);
-
-  // Determine Dominant and Secondary categories from Top 3 roles to guarantee consistency
-  const catCounts: Record<string, number> = {};
-  topRoles.forEach(r => {
-    catCounts[r.role.category] = (catCounts[r.role.category] || 0) + 1;
-  });
-  
-  const sortedCats = Object.entries(catCounts).sort((a, b) => {
-    if (b[1] !== a[1]) return b[1] - a[1];
-    // Tie breaker: the one that appears first in topRoles
-    const indexA = topRoles.findIndex(r => r.role.category === a[0]);
-    const indexB = topRoles.findIndex(r => r.role.category === b[0]);
-    return indexA - indexB;
-  });
-
-  const dominantCategory = sortedCats[0][0];
-  let secondaryCategory = sortedCats.length > 1 ? sortedCats[1][0] : '';
-
-  // If top 3 roles are all the exact same category, fallback to user's raw scores for secondary
-  if (!secondaryCategory) {
-    const rawSorted = Object.entries(userScores.categories)
-      .sort((a, b) => (b[1] as number) - (a[1] as number));
-    const nextBest = rawSorted.find(c => c[0] !== dominantCategory);
-    if (nextBest) secondaryCategory = nextBest[0];
-  }
 
   const patterns: Record<string, string> = {
     Dados: 'você tende a resolver os problemas buscando evidências e métricas antes de agir',
