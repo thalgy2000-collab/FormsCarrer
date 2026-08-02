@@ -476,5 +476,39 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Métricas de Negócios Digitais" }
       ]
     }
+  },
+  "Head de Produto": {
+    category: "Liderança",
+    tagline: "Lidera toda a área de Produto de uma unidade de negócio ou empresa.",
+    description: "O Head de Produto lidera toda a área de Produto de uma unidade de negócio ou empresa, sendo responsável por estratégia, pessoas, processos e resultados. Define prioridades, estrutura equipes, desenvolve lideranças e garante que o portfólio de produtos esteja alinhado aos objetivos estratégicos da organização. Atua constantemente com áreas como Engenharia, Design, Marketing, Comercial e Diretoria Executiva. A posição exige forte capacidade de liderança, gestão de stakeholders e visão de negócio. A evolução da carreira pode levar aos cargos de Product Director, VP de Produto ou Chief Product Officer (CPO).",
+    salaryRange: {
+      min: 18000,
+      max: 25000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 21410,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Head de Produto / Product Lead no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
