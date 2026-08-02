@@ -665,7 +665,7 @@ function App() {
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                   {track && (track.formacoes.length > 0 || track.sprints.length > 0) && (
-                    <div className="glass-panel">
+                    <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                       <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
                         <Target size={20} /> Trilha PM3 Recomendada
                       </h3>
@@ -697,7 +697,7 @@ function App() {
                     </div>
                   )}
 
-                  <div className="glass-panel">
+                  <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                     <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
                       <BookOpen size={20} /> Leitura Recomendada
                     </h3>
@@ -717,7 +717,7 @@ function App() {
                   </div>
 
                   {(hardSkills.length > 0 || softSkills.length > 0) && (
-                    <div className="glass-panel">
+                    <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                       <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
                         <Wrench size={20} /> Habilidades para Desenvolver
                       </h3>
@@ -750,7 +750,7 @@ function App() {
                     </div>
                   )}
 
-                  <div className="glass-panel">
+                  <div className="glass-panel" style={{ padding: 'clamp(1.5rem, 4vw, 2rem)' }}>
                     <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#d8b4fe', margin: '0 0 1rem 0' }}>
                       <Sparkles size={20} /> Próximos Passos
                     </h3>
