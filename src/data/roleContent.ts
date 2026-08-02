@@ -510,5 +510,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Head de Design": {
+    category: "Design",
+    tagline: "Define a estratégia de Design da organização e lidera todas as equipes responsáveis pela experiência.",
+    description: "O Head of Design define a estratégia de Design da organização e lidera todas as equipes responsáveis pela experiência dos produtos digitais. Atua na construção da cultura de Design, governança, processos, indicadores e desenvolvimento das lideranças da área. Também representa o Design nas decisões executivas, garantindo que a perspectiva do usuário esteja presente na estratégia da empresa. É uma posição altamente estratégica, que exige forte capacidade de liderança, influência organizacional e visão de negócio. A evolução pode levar a cargos como Director of Design ou Chief Design Officer em organizações de maior porte.",
+    salaryRange: {
+      min: 20000,
+      max: 30000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado do intervalo de Head aplicado a Design. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Design",
+        value: "6.0%",
+        description: "6% dos respondentes vinham diretamente de Design antes de entrar em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 26"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Design", description: "Design de produto de ponta a ponta, do problema à interface." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de UI Design" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Design de Serviço" }
+      ]
+    }
   }
 };
