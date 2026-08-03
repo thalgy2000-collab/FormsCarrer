@@ -976,5 +976,44 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Owner": {
+    category: "Produto",
+    tagline: "Maximiza o valor entregue pelas equipes organizando e priorizando o backlog do produto.",
+    description: "O Product Owner é responsável por maximizar o valor entregue pelas equipes de desenvolvimento, organizando e priorizando o backlog do produto. Atua próximo aos times de Engenharia para detalhar requisitos, esclarecer necessidades do negócio e garantir que as entregas estejam alinhadas aos objetivos definidos. Embora compartilhe diversas competências com Product Managers, seu foco costuma estar mais próximo da execução e da gestão das entregas. A função exige organização, comunicação e capacidade de priorização. Pode evoluir para Product Manager, Senior Product Manager ou posições de liderança em Produto.",
+    salaryRange: {
+      min: 8000,
+      max: 12000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 9661,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Product Owner no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      },
+      {
+        title: "Entrada direta em Produto",
+        value: "4.9%",
+        description: "5% entraram direto em Produto, sem passagem por outra área antes.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 28"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
