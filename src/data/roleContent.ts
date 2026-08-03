@@ -1015,5 +1015,39 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Program Manager": {
+    category: "Programa",
+    tagline: "Coordena iniciativas multidisciplinares que envolvem vários times.",
+    description: "O Product Program Manager coordena iniciativas grandes e multidisciplinares — programas que envolvem vários squads, áreas e, muitas vezes, prazos externos. Garante alinhamento entre PMs, engenharia, design, marketing e stakeholders de negócio, e mantém visibilidade sobre riscos, dependências e marcos de entrega. Diferente de um PM de squad, o foco não é definir \"o que construir\" para um produto específico, mas orquestrar a execução de várias frentes que precisam pousar juntas. É um papel forte em comunicação, gestão de risco e governança, indicado para quem gosta de tocar programas complexos com muitas partes interessadas.",
+    salaryRange: {
+      min: 12000,
+      max: 18000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 13353,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Project Manager aplicada ao contexto de produto. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Projetos",
+        value: "19.1%",
+        description: "19% dos respondentes vinham da área de Projetos antes de atuarem em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 23"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
