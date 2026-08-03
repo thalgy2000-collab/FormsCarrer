@@ -1213,5 +1213,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Technical Program Manager": {
+    category: "Programa",
+    tagline: "Coordena programas complexos envolvendo múltiplas equipes técnicas e de Produto.",
+    description: "O Technical Program Manager coordena programas complexos que envolvem múltiplas equipes técnicas e de Produto. Seu foco é garantir alinhamento entre estratégia, planejamento, dependências, riscos e execução, mantendo iniciativas de grande escala dentro dos prazos e objetivos definidos. Trabalha diretamente com líderes de Engenharia, Produto e outras áreas para remover impedimentos e facilitar decisões. A função exige organização, comunicação, gestão de projetos e sólida compreensão técnica. É uma carreira voltada para profissionais que desejam atuar na coordenação estratégica de grandes programas, podendo evoluir para Program Director ou liderança de operações técnicas.",
+    salaryRange: {
+      min: 15000,
+      max: 22000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado de Project Manager com escopo técnico multi-time. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Projetos",
+        value: "19.1%",
+        description: "19% dos respondentes vinham da área de Projetos antes de atuarem em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 23"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
