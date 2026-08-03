@@ -1049,5 +1049,36 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Researcher": {
+    category: "Pesquisa",
+    tagline: "Investiga profundamente usuários, seus comportamentos e dores para apoiar decisões de Produto baseadas em evidências.",
+    description: "O Product Researcher é responsável por investigar profundamente os usuários, seus comportamentos, necessidades e dores. Planeja entrevistas, pesquisas qualitativas e quantitativas, testes e análises para apoiar decisões de Produto baseadas em evidências. Trabalha em parceria com Product Managers, Designers e equipes de Dados para reduzir incertezas antes do desenvolvimento de novas funcionalidades. Exige forte capacidade investigativa, comunicação e síntese de informações complexas. Com a crescente valorização do Discovery, essa função ganha importância estratégica e pode evoluir para posições de Research Lead, UX Research ou Product Discovery.",
+    salaryRange: {
+      min: 8000,
+      max: 12000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de User Researcher com senioridade. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Discovery", description: "Pesquisa, experimentação e decisões orientadas por evidência." }
+      ],
+      sprints: [
+        { title: "Curso de Técnicas de Pesquisa" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Experimentação com Teste A/B" }
+      ]
+    }
   }
 };
