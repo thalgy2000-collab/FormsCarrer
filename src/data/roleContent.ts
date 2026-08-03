@@ -1112,5 +1112,44 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Senior PM": {
+    category: "Produto",
+    tagline: "Lidera produtos de maior complexidade e assume decisões estratégicas de alto impacto.",
+    description: "O Senior Product Manager lidera produtos de maior complexidade, assumindo decisões estratégicas que impactam clientes, receita e crescimento da empresa. Além das responsabilidades tradicionais de Product Management, atua como referência para outros Product Managers, conduz iniciativas transversais e influencia decisões de alto impacto. Espera-se domínio em discovery, estratégia, métricas, liderança sem autoridade formal e gestão de stakeholders. É uma posição que exige forte capacidade analítica e visão de longo prazo. A evolução natural inclui Principal Product Manager, Group Product Manager, Head de Produto ou Product Director.",
+    salaryRange: {
+      min: 15000,
+      max: 22000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 17500,
+      panoramaAverageLabel: "≈ Média Panorama 2024-2025"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa Sênior de PMs no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      },
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
