@@ -950,5 +950,31 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Product Operations": {
+    category: "Operações",
+    tagline: "Cria processos, ferramentas e rotinas que aumentam a eficiência das equipes de Produto.",
+    description: "O profissional de Product Operations cria processos, ferramentas e rotinas que aumentam a eficiência das equipes de Produto. Atua estruturando governança, documentação, métricas, rituais, gestão do conhecimento e integração entre diferentes áreas, permitindo que Product Managers concentrem esforços em decisões estratégicas. Trabalha próximo de Produto, Engenharia, Dados e Operações para padronizar práticas e reduzir desperdícios. A função exige organização, pensamento sistêmico e capacidade de otimizar processos complexos. Com o amadurecimento das organizações de Produto, essa carreira ganha relevância e pode evoluir para Product Ops Manager, Head of Product Operations ou liderança operacional de Produto.",
+    salaryRange: {
+      min: 14000,
+      max: 22000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 19000,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de Product Operations no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
