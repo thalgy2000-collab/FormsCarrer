@@ -1151,5 +1151,36 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Solutions Architect": {
+    category: "Engenharia",
+    tagline: "Projeta soluções técnicas que atendem objetivos de negócio, com escalabilidade e segurança.",
+    description: "O Solutions Architect projeta soluções técnicas capazes de atender aos objetivos de negócio, garantindo escalabilidade, segurança, integração e sustentabilidade tecnológica. Atua como ponte entre Produto, Engenharia e Arquitetura, participando de decisões estruturais sobre plataformas, sistemas e integrações. Embora tenha forte base técnica, precisa compreender prioridades de Produto e impactos para os usuários. A função exige conhecimento em arquitetura de software, cloud, integrações e desenho de sistemas complexos. Pode evoluir para posições como Principal Architect, Engineering Manager ou liderança técnica executiva.",
+    salaryRange: {
+      min: 15000,
+      max: 22000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa técnica sênior com escopo de arquitetura. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Tecnologia",
+        value: "26.1%",
+        description: "Antes de atuar em Produto, 26% dos respondentes vinham da área de Tecnologia — a origem mais comum.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 22"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
