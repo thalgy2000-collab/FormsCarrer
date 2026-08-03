@@ -1182,5 +1182,36 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "Technical PM": {
+    category: "Produto",
+    tagline: "PM com forte perfil técnico, atua próximo a APIs, plataformas e infra.",
+    description: "O Technical PM é o Product Manager com repertório técnico forte, capaz de tomar decisões sobre APIs, integrações, plataformas internas, SDKs e infraestrutura. Trabalha próximo de Engenharia e, muitas vezes, tem outros times de produto ou clientes técnicos como usuários finais. No dia a dia, discute contratos de API, trade-offs de arquitetura, performance e segurança, sem perder de vista a experiência de quem consome esses produtos. É um perfil bastante valorizado em empresas com produtos B2B, plataformas e ecossistemas de dados, e costuma ser porta de entrada para carreiras em produto de plataforma e infra.",
+    salaryRange: {
+      min: 14000,
+      max: 20000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de PMs Sênior com viés técnico. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Tecnologia",
+        value: "26.1%",
+        description: "Antes de atuar em Produto, 26% dos respondentes vinham da área de Tecnologia — a origem mais comum.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 22"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
