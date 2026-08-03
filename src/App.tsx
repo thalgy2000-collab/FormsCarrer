@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb, Wrench } from 'lucide-react';
 import { roleContents } from './data/roleContent';
+import marketCourses from './data/marketCourses';
 import { mockQuestions } from './data/questions';
 import { mockRoles } from './data/roles';
 import { categoryDefaults } from './data/categoryDefaults';
@@ -508,13 +509,19 @@ function App() {
                 nextSteps: ["Pesquisar mais sobre a área."]
               };
               const track = content?.recommendedTrack || categoryDefault.recommendedTrack;
-              const extCourses = content?.externalCourses || categoryDefault.externalCourses || [];
+              
+              const isExternalChannel = canal && canal !== 'pm3';
+              const specificMarketCourses = marketCourses[role.name];
+              const extCourses = specificMarketCourses 
+                ? specificMarketCourses.map(c => ({ title: c.title, provider: c.institution, description: c.reason, link: undefined }))
+                : (content?.externalCourses || categoryDefault.externalCourses || []);
+                
               const readings = content?.recommendedReading && content.recommendedReading.length > 0 ? content.recommendedReading : categoryDefault.reading;
               const nextSteps = content?.nextSteps && content.nextSteps.length > 0 ? content.nextSteps : categoryDefault.nextSteps;
               const hardSkills = content?.hardSkills || categoryDefault.hardSkills || [];
               const softSkills = content?.softSkills || categoryDefault.softSkills || [];
 
-              const showMarketCourses = canal === 'linkedin' && extCourses.length > 0;
+              const showMarketCourses = isExternalChannel && extCourses.length > 0;
 
               return (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
