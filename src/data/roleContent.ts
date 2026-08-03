@@ -1080,5 +1080,37 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Experimentação com Teste A/B" }
       ]
     }
+  },
+  "Product Strategy Manager": {
+    category: "Estratégia",
+    tagline: "Define direcionamentos estratégicos para o portfólio de produtos da organização.",
+    description: "O Product Strategy Manager define direcionamentos estratégicos para o portfólio de produtos da organização. Analisa tendências de mercado, comportamento dos clientes, concorrência e oportunidades de negócio para orientar decisões de longo prazo. Trabalha próximo das lideranças executivas, apoiando a definição de roadmaps, investimentos e prioridades estratégicas. A função exige forte visão de negócio, pensamento analítico e habilidade para transformar dados em decisões. É uma posição voltada à estratégia e pode evoluir para Diretor de Produto, VP de Produto ou Chief Product Officer.",
+    salaryRange: {
+      min: 16000,
+      max: 24000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da faixa de PMs sêniores e Head no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA para visão de produto",
+        value: "5.3/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA para apoiar a visão de produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 71"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
