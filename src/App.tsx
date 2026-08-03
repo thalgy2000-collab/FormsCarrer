@@ -445,21 +445,36 @@ function App() {
                       </p>
                     </div>
 
-                    <div style={{ marginTop: '0.5rem' }}>
+                    <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      <div style={{ fontSize: '0.85rem', color: '#d8b4fe', textAlign: 'center', fontWeight: 500 }}>
+                        {richContent?.salaryRange?.min ? `💰 Salário revelado: a partir de R$ ${richContent.salaryRange.min.toLocaleString('pt-BR')}` : '💰 Faixa salarial e 🎓 trilha de estudos disponíveis'}
+                      </div>
                       <button 
                         onClick={() => { setSelectedRoleIndex(idx); setScreen('action-plan'); }}
                         style={{ 
-                          background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)', 
-                          color: '#d8b4fe', padding: '10px 20px', borderRadius: '8px',
+                          background: '#a855f7', 
+                          border: 'none', 
+                          color: 'white', 
+                          padding: '14px 20px', 
+                          borderRadius: '10px',
                           display: 'inline-flex', alignItems: 'center', gap: '8px',
-                          cursor: 'pointer', fontFamily: 'Outfit', fontWeight: 500, fontSize: '0.95rem',
-                          transition: 'all 0.2s ease',
-                          width: '100%', justifyContent: 'center'
+                          cursor: 'pointer', fontFamily: 'Outfit', fontWeight: 600, fontSize: '1rem',
+                          transition: 'all 0.3s ease',
+                          width: '100%', justifyContent: 'center',
+                          boxShadow: '0 4px 14px rgba(168, 85, 247, 0.3)'
                         }}
-                        onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(168, 85, 247, 0.2)'; }}
-                        onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)'; }}
+                        onMouseOver={(e) => { 
+                          e.currentTarget.style.background = '#9333ea'; 
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                          e.currentTarget.style.boxShadow = '0 6px 20px rgba(168, 85, 247, 0.5)';
+                        }}
+                        onMouseOut={(e) => { 
+                          e.currentTarget.style.background = '#a855f7'; 
+                          e.currentTarget.style.transform = 'none';
+                          e.currentTarget.style.boxShadow = '0 4px 14px rgba(168, 85, 247, 0.3)';
+                        }}
                       >
-                        Ver detalhes completos <ArrowRight size={16} />
+                        Ver faixa salarial e trilha de estudos <ArrowRight size={18} />
                       </button>
                     </div>
                   </div>
