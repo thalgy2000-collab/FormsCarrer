@@ -535,48 +535,17 @@ function App() {
                       </p>
 
                       {showMarketCourses ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                          <div>
-                            <h4 style={{ fontSize: '1rem', color: 'white', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>Trilha PM3</h4>
-                            {track.formacoes.length > 0 && (
-                              <div style={{ marginBottom: '1rem' }}>
-                                <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem', margin: 0 }}>Formações</h5>
-                                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                                  {track.formacoes.map((formacao, i) => (
-                                    <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #a855f7' }}>
-                                      <div style={{ fontWeight: 600, color: 'white' }}>{formacao.title}</div>
-                                      <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{formacao.description}</div>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                            {track.sprints.length > 0 && (
-                              <div>
-                                <h5 style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', marginBottom: '0.5rem', margin: 0 }}>Sprints</h5>
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                  {track.sprints.map((sprint, i) => (
-                                    <span key={i} style={{ background: 'rgba(168, 85, 247, 0.15)', color: '#d8b4fe', padding: '6px 12px', borderRadius: '100px', fontSize: '0.85rem' }}>
-                                      {sprint.title}
-                                    </span>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                          <div>
-                            <h4 style={{ fontSize: '1rem', color: 'white', marginBottom: '1rem', paddingBottom: '0.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>Cursos de Mercado</h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                              {extCourses.map((course, i) => (
-                                <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #3b82f6' }}>
-                                  <div style={{ fontWeight: 600, color: 'white' }}>{course.title}</div>
-                                  <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginBottom: '4px' }}>Por {course.provider}</div>
-                                  <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{course.description}</div>
-                                  {course.link && <a href={course.link} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: '8px', fontSize: '0.85rem', color: '#d8b4fe', textDecoration: 'none' }}>Ver curso →</a>}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                        <div>
+                          <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {extCourses.map((course, i) => (
+                              <li key={i} style={{ background: 'rgba(255,255,255,0.03)', padding: '12px 16px', borderRadius: '8px', borderLeft: '3px solid #3b82f6' }}>
+                                <div style={{ fontWeight: 600, color: 'white' }}>{course.title}</div>
+                                <div style={{ fontSize: '0.8rem', color: '#9ca3af', marginBottom: '4px' }}>Por {course.provider}</div>
+                                <div style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{course.description}</div>
+                                {course.link && <a href={course.link} target="_blank" rel="noreferrer" style={{ display: 'inline-block', marginTop: '8px', fontSize: '0.85rem', color: '#d8b4fe', textDecoration: 'none' }}>Ver curso →</a>}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       ) : (
                         <>
