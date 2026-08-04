@@ -1278,5 +1278,63 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de Design de Serviço" }
       ]
     }
+  },
+  "UX Researcher": {
+    category: "Pesquisa",
+    tagline: "Busca compreender como as pessoas interagem com produtos digitais para melhorar a experiência.",
+    description: "O UX Researcher busca compreender como as pessoas interagem com produtos digitais para melhorar sua experiência. Conduz entrevistas, testes de usabilidade, observações e pesquisas para identificar barreiras e oportunidades de melhoria. Atua próximo de Product Designers e Product Managers durante todo o ciclo de desenvolvimento. É essencial dominar métodos de pesquisa, análise de comportamento e comunicação de insights. A carreira vem ganhando relevância à medida que empresas priorizam decisões orientadas pelo usuário. A evolução natural inclui posições como Research Lead, Head of Research ou liderança em Design.",
+    salaryRange: {
+      min: 7000,
+      max: 11000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 9107,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de UX Designer / User Researcher no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Uso de IA em Product Discovery",
+        value: "4.4/10",
+        description: "Profissionais de Produto avaliaram, de 1 a 10, o quanto vêm usando IA no dia a dia de discovery.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 40"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Discovery", description: "Pesquisa, experimentação e decisões orientadas por evidência." }
+      ],
+      sprints: [
+        { title: "Curso de Técnicas de Pesquisa" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Experimentação com Teste A/B" }
+      ]
+    }
+  },
+  "Voice of Customer Manager": {
+    category: "Insights",
+    tagline: "Estrutura processos para transformar o feedback dos clientes em decisões estratégicas.",
+    description: "O Voice of Customer Manager estrutura processos para capturar, organizar e transformar o feedback dos clientes em decisões estratégicas. Consolida informações provenientes de pesquisas, atendimento, comunidades, redes sociais e outras fontes para identificar padrões e oportunidades. Atua como elo entre clientes e equipes de Produto, Marketing e Customer Success, garantindo que a voz do usuário seja considerada nas prioridades da empresa. A função exige visão sistêmica, comunicação e forte orientação ao cliente. Pode evoluir para posições de Customer Insights, Product Strategy ou liderança em Experiência do Cliente.",
+    salaryRange: {
+      min: 12000,
+      max: 18000,
+      currency: "BRL",
+      period: "mensal"
+    },
+    salaryConfidence: "media",
+    salarySource: "Derivado da gestão de pesquisa aplicada a produto. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Manager", description: "Da estratégia à execução do ciclo completo de produto." },
+        { title: "Formação Product Leadership", description: "Gestão de times, estratégia e cultura de produto." }
+      ],
+      sprints: [
+        { title: "Curso de Roadmap de Produto e Priorização" },
+        { title: "Curso de Métricas de Negócios Digitais" },
+        { title: "Curso de PRD: Documento de Requisitos de Produto" }
+      ]
+    }
   }
 };
