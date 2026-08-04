@@ -1245,5 +1245,38 @@ export const roleContents: Record<string, RoleContent> = {
         { title: "Curso de PRD: Documento de Requisitos de Produto" }
       ]
     }
+  },
+  "UX/UI Designer": {
+    category: "Design",
+    tagline: "Projeta experiências digitais intuitivas e interfaces visualmente consistentes.",
+    description: "O UX/UI Designer projeta experiências digitais intuitivas e interfaces visualmente consistentes. Atua desde a compreensão dos problemas dos usuários até a criação de fluxos, wireframes, protótipos e interfaces finais. Trabalha em conjunto com Produto, Engenharia e Pesquisa para equilibrar necessidades do negócio, limitações técnicas e experiência do usuário. Além de domínio em design de interfaces e sistemas de design, precisa compreender métricas, usabilidade e comportamento humano. A carreira pode evoluir para Product Designer, Design Lead, Product Design Manager ou Head of Design, assumindo responsabilidades cada vez mais estratégicas.",
+    salaryRange: {
+      min: 7000,
+      max: 11000,
+      currency: "BRL",
+      period: "mensal",
+      panoramaAverage: 9107,
+      panoramaAverageLabel: "Média Panorama 2024-2025"
+    },
+    salaryConfidence: "alta",
+    salarySource: "Média direta de UX Designer / User Researcher no Panorama 2025. Fonte: Panorama de Mercado de Produto 2024-2025 · PM3",
+    insights: [
+      {
+        title: "Origem profissional: Design",
+        value: "6.0%",
+        description: "6% dos respondentes vinham diretamente de Design antes de entrar em Produto.",
+        source: "Panorama Produto 2025 — aba New Insights, linha 26"
+      }
+    ],
+    recommendedTrack: {
+      formacoes: [
+        { title: "Formação Product Design", description: "Design de produto de ponta a ponta, do problema à interface." }
+      ],
+      sprints: [
+        { title: "Curso de UI Design" },
+        { title: "Curso de Design Thinking" },
+        { title: "Curso de Design de Serviço" }
+      ]
+    }
   }
 };
