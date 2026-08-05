@@ -446,8 +446,8 @@ function App() {
                         <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.05rem', margin: 0 }}>
                           <BookOpen size={18} color="#a855f7" /> Sobre a carreira
                         </h4>
-                        <button style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', padding: 0, cursor: 'pointer' }}>
-                          {collapsedRoles[idx] ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        <button style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', padding: '4px 8px', gap: '4px', borderRadius: '4px', cursor: 'pointer', fontSize: '0.8rem' }}>
+                          {collapsedRoles[idx] ? <><ChevronDown size={14} /> Expandir</> : <><ChevronUp size={14} /> Minimizar</>}
                         </button>
                       </div>
                       <AnimatePresence>
@@ -466,7 +466,7 @@ function App() {
 
                     <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       <div style={{ fontSize: '0.85rem', color: '#d8b4fe', textAlign: 'center', fontWeight: 500 }}>
-                        {richContent?.salaryRange?.min ? `💰 Salário revelado: a partir de R$ ${richContent.salaryRange.min.toLocaleString('pt-BR')}` : '💰 Faixa salarial e 🎓 trilha de estudos disponíveis'}
+                        Faixa salarial e trilha de estudos disponíveis
                       </div>
                       <button 
                         onClick={() => { setSelectedRoleIndex(idx); setScreen('action-plan'); }}
