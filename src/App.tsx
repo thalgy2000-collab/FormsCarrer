@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb, Wrench } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ChevronDown, ChevronUp, Target, Sparkles, RefreshCcw, ArrowRight, DollarSign, BookOpen, Lightbulb, Wrench } from 'lucide-react';
 import { roleContents } from './data/roleContent';
 import marketCourses from './data/marketCourses';
 import { mockQuestions } from './data/questions';
@@ -56,6 +56,7 @@ function App() {
   const [lead, setLead] = useState({ name: '', email: '' });
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [selectedRoleIndex, setSelectedRoleIndex] = useState<number>(0);
+  const [collapsedRoles, setCollapsedRoles] = useState<Record<number, boolean>>({});
 
   const currentQuestion = mockQuestions[qIndex];
   const progress = ((qIndex) / mockQuestions.length) * 100;
@@ -176,6 +177,7 @@ function App() {
     setLead({ name: '', email: '' });
     setAnalysis(null);
     setSelectedRoleIndex(0);
+    setCollapsedRoles({});
     setScreen('intro');
   };
 
@@ -437,12 +439,29 @@ function App() {
                     </div>
                     
                     <div>
-                      <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.5rem', fontSize: '1.05rem', margin: 0 }}>
-                        <BookOpen size={18} color="#a855f7" /> Sobre a carreira
-                      </h4>
-                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0, marginTop: '8px' }}>
-                        {richContent ? richContent.description : match.explanation}
-                      </p>
+                      <div 
+                        onClick={() => setCollapsedRoles(prev => ({ ...prev, [idx]: !prev[idx] }))}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer', marginBottom: '0.5rem', userSelect: 'none' }}
+                      >
+                        <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.05rem', margin: 0 }}>
+                          <BookOpen size={18} color="#a855f7" /> Sobre a carreira
+                        </h4>
+                        <button style={{ background: 'transparent', border: 'none', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', padding: 0, cursor: 'pointer' }}>
+                          {collapsedRoles[idx] ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </button>
+                      </div>
+                      <AnimatePresence>
+                        {!collapsedRoles[idx] && (
+                          <motion.p 
+                            initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                            animate={{ height: 'auto', opacity: 1, marginTop: '8px' }}
+                            exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                            style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.6', margin: 0, overflow: 'hidden' }}
+                          >
+                            {richContent ? richContent.description : match.explanation}
+                          </motion.p>
+                        )}
+                      </AnimatePresence>
                     </div>
 
                     <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '8px' }}>
